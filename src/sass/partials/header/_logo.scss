@@ -1,0 +1,27 @@
+﻿@import "../../modules/_base.scss";
+
+/*Site Logo*/
+.h-logo{
+    float:left;
+    width:122px;
+    height:59px;
+    margin-right:10px;
+    @include hide-text;
+    background-image:url(../img/logo.png);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+
+@include media($desktop){
+    .h-logo{
+        width:180px;
+        height:87px;
+        background-size:unset;
+    }
+}
+
+@include media($large){
+    .h-logo{
+        margin-right:30px;
+    }
+}

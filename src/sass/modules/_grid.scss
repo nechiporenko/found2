@@ -1,0 +1,60 @@
+﻿@import "base";
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.g-container {
+    @include outer-container();
+    padding:0 10px;
+    box-sizing:border-box;
+}
+
+.g-row{
+    margin-left:-10px;
+    margin-right:-10px;
+    @include row();
+}
+
+.lt-ie9{
+    .g-container,
+    .g-row{
+        @extend .g-clearfix;
+    }
+}
+
+
+/*Default Grid*/
+.g-column{
+    width: 100%;
+    float: left;
+    padding-left:10px;
+    padding-right:10px;
+    box-sizing: border-box;
+    min-height:1px;
+}
+.g-col{
+  @extend .g-column;
+}
+
+@include media($tablet){
+    .g-col--one-half{
+        width:(100%)/2;
+    }
+    
+    .g-col--one-third{
+        width:(100%)/3;
+    }
+    .g-col--two-thirds{
+        width: 2*(100%)/3;
+    }
+    .g-col--one-fourth{
+        width:(100%)/4;
+    }
+    .g-col--three-fourth{
+        width:3*(100%)/4;
+    }
+    .g-col--one-fifth{
+        width: (100%)/5;
+    }
+    .g-col--one-sixth{
+        width: (100%)/6;
+    }
+}

@@ -1,0 +1,25 @@
+﻿@import "../../modules/_base.scss";
+/*Header Search & Menu buttons*/
+
+.b-header__btn{
+    @extend .h-mobile__btn;
+}
+
+.b-header__btn--search{
+    display:none;
+    float:left;
+
+    @include media($large){
+        display:inline-block;
+        margin:10px 0 0;
+    }
+}
+
+.b-header__btn--menu{
+    float:right;
+    margin-right:10px;
+
+    @include media($tablet){
+        display:none;
+    }
+}

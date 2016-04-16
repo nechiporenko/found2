@@ -1,0 +1,81 @@
+﻿@import "../../modules/_base.scss";
+/*Header mobile buttons*/
+.b-header__mobile{
+    float:right;
+    width:100%;
+    padding:10px 10px 0;
+    box-sizing:border-box;
+}
+
+.h-mobile{
+    @extend .g-clearlist;
+    text-align:justify;
+    line-height:0;
+    font-size:1px;
+    text-align-last:justify;
+
+    &:after{
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+    }
+}
+
+.h-mobile__item{
+    display:inline-block;
+    vertical-align: top;
+    text-align:center;
+    text-align-last:center;
+    line-height:1;
+    font-size:18px;
+}
+
+.h-mobile__btn{
+    @extend .g-clearbutton;
+    width:38px;
+    height:38px;
+    line-height:38px;
+    color:#fff;
+    text-decoration:none;
+    @include font-size(22px);
+
+    &:hover,
+    &:active{
+        color:$primary-alt;
+    }
+}
+
+@include media($tablet){
+    .b-header__mobile{
+        padding:0;
+        width:auto;
+    }
+
+    .h-mobile{
+        text-align:center;
+        text-align-last:unset;
+
+        &:after{
+            display:none;
+        }
+    }
+
+    .h-mobile__item{
+        margin-left:10px;
+    }
+}
+
+@include media($desktop){
+    .b-header__mobile{
+        padding:9px 0 0;
+    }
+}
+
+@include media($large){
+    .b-header__mobile{
+        display:none;
+    }
+}

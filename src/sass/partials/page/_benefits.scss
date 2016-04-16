@@ -1,0 +1,58 @@
+﻿@import "../../modules/_base.scss";
+/*Benefits Section*/
+.benefits{
+    @extend .g-clearlist;
+    @extend .g-clearfix;
+}
+.benefits__item{
+    float:left;
+    width:100%;
+    box-sizing:border-box;
+    min-height:1px;
+
+    @include media($tablet){
+        @include span-columns(4);
+        @include omega(3n);
+    }
+}
+.benefits__inner{
+    text-align:center;
+    line-height:1;
+
+    @include media($tablet){
+        margin-bottom:0;
+    }
+}
+.benefits__img{
+    display:block;
+    width:133px;
+    height:120px;
+    margin:0 auto 20px;
+    background:url(../img/benefits.png) no-repeat;
+}
+
+.benefits__img--1{
+    background-position:0 0;
+}
+.benefits__img--2{
+    background-position:0 -125px;
+}
+.benefits__img--3{
+    background-position:0 -250px;
+}
+
+.benefits__caption{
+    line-height:1.25;
+    font-size:rem(18px);
+
+    @include media($desktop){
+        @include font-size(24px);
+    }
+}
+.benefits__title{
+    display:block;
+    margin-bottom:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    @include font-size(24px);
+}

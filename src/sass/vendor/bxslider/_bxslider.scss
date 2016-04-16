@@ -1,0 +1,148 @@
+﻿@import "../../modules/base";
+/** BX Slider **/
+
+$loader:   '../img/loader.gif';
+
+//layout
+.bx-wrapper {
+	position: relative;
+    margin:0 auto;
+	padding: 0;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+}
+
+
+
+.bx-viewport {
+	//fix other elements on the page moving (on Chrome)
+	-webkit-transform: translatez(0);
+}
+
+// THEME
+.bx-wrapper {
+	.bx-pager,
+	.bx-controls-auto {
+		position: absolute;
+        bottom: 15px;
+		width: 100%;
+        z-index:55;
+	}
+}
+
+// LOADER
+.bx-wrapper .bx-loading {
+	min-height: 50px;
+	background: url($loader) center center no-repeat #fff;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+}
+
+// PAGER
+.bx-wrapper {
+	.bx-pager {
+		text-align: center;
+		//font-size: .85em;
+		//font-family: Arial;
+		//font-weight: bold;
+		//color: #666;
+
+		//padding-top: 20px;
+
+		&.bx-default-pager a {
+			background: #fff;
+			@include hide-text;
+			display: block;
+			width: 10px;
+			height: 6px;
+			margin: 0 5px;
+			outline: 0;
+
+			&:hover,
+			&.active,
+			&:active {
+				background: $primary-alt;
+			}
+
+            @include media($tablet){
+                width:40px;
+                margin:0 3px;
+            }
+		}
+	}
+	.bx-pager-item,
+	.bx-controls-auto .bx-controls-auto-item {
+		display: inline-block;
+	}
+	.bx-pager-item {
+		font-size: 0;
+		line-height: 0;
+	}
+}
+
+// DIRECTION CONTROLS (NEXT / PREV)
+.bx-wrapper {
+	.bx-prev {
+		left: 0;
+	}
+	.bx-next {
+		right: 0;
+	}
+	.bx-controls-direction a {
+		position: absolute;
+		top:0;
+		outline: 0;
+        @include size(60px);
+        line-height:60px;
+        text-align:center;
+		z-index: 100;
+        background:#696bb6;
+        background:rgba($primary, .8);
+        color:#fff;
+        text-decoration:none;
+        @include transition-property(background, color, opacity);
+        @include transition-duration(.3s);
+        @include font-size(24px);
+
+		&.disabled {
+			opacity:.3;
+            &:hover,
+            &:active{
+                opacity:.3;
+                color:#fff;
+                cursor:default;
+            }
+		}
+
+        &:hover,
+        &:active{
+            background:$primary;
+            color:$primary-alt;
+            opacity:1;
+        }
+	} 
+}
+
+@include media($desktop){
+    .bx-wrapper{
+        .bx-controls-direction a{
+            top: 50%;
+		    margin-top: -30px;
+        }
+    }
+}
+
+@include media($large){
+    .bx-wrapper{
+        .bx-prev {
+		    left: -30px;
+	    }
+	    .bx-next {
+		    right: -30px;
+	    }
+    }
+}

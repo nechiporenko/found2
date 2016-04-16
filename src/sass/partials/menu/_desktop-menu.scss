@@ -1,0 +1,63 @@
+﻿@import "../../modules/_base.scss";
+/* Desktop Header Menu */
+.h-menu{
+    @extend .h-lang;
+}
+
+.h-menu__item{
+    display:inline-block;
+    font-size:rem(13px);
+    padding:0 7px;
+    position:relative;
+
+    &:before{
+        content:'';
+        display:block;
+        width:1px;
+        background:#ababab;
+        position:absolute;
+        top:5px; left:0; bottom:5px;
+    }
+
+    &:first-child{
+        padding-left:0;
+        &:before{
+            display:none;
+        }
+    }
+
+    &:last-child{
+        padding-right:0;
+    }
+    
+}
+.h-menu__link{
+    display:inline-block;
+    padding:5px 0;
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+
+    &:hover,
+    &:active,
+    &.current{
+        color:$primary-alt;
+    }
+
+    &.current{
+        cursor:default;
+    }
+}
+
+@include media($tablet){
+    .h-menu{
+        display:block;
+    }
+}
+
+@include media($desktop){
+    .h-menu__item{
+        @include font-size(18px);
+        padding:0 14px;
+    }
+}

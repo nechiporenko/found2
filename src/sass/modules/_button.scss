@@ -1,0 +1,51 @@
+﻿@import "base";
+/* Buttons */
+.g-btn{
+    display:inline-block;
+    vertical-align:middle;
+    margin-bottom:$project-line-height;
+    height:2*$project-line-height;
+    line-height:2*$project-line-height;
+    padding:0 30px;
+    color:#fff;
+    text-align: center;
+    @include font-size($project-font-size);
+    text-decoration: none;
+    white-space: nowrap;
+    background: $primary;
+    border-radius:$border-radius;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    outline:0;
+
+    &:hover,
+    &:focus,
+    &:active{
+        color:#fff;
+        box-shadow:inset 2px 2px 30px darken($primary, 20%);
+    }
+
+    &:active{
+        @include transform(translateY(3px));
+    }
+
+    &:disabled{
+        background:grey;
+        box-shadow:none;
+    }
+}
+
+.g-clearbutton{
+    display:inline-block;
+    vertical-align:middle;
+    border:none;
+    background:none;
+    padding:0;
+    cursor: pointer;
+    text-align:center;
+    box-sizing: border-box;
+    outline:0;
+}
+
+

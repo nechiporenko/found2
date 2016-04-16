@@ -1,0 +1,24 @@
+﻿@import "../../modules/_base.scss";
+/*Header desktop info*/
+.b-header__info{
+    display:none;
+    float:right;
+    padding-top:18px;
+    text-align:right;
+    line-height:1.28;
+    font-weight:600;
+
+    @include media($large){
+        display:block;
+    }
+}
+
+.b-header__link{
+    text-decoration:none;
+    color:$primary-alt;
+}
+
+.b-header__link--mail{
+    display:block;
+    letter-spacing:rem(.1px);
+}

@@ -1,0 +1,80 @@
+﻿@import "../../modules/_base.scss";
+/*Header slider hero*/
+.h-hero{
+    position:absolute;
+    top:50%; left:0;
+    z-index:60;//50 - z-index в слайдере
+    width:100%;
+    @include transform(translateY(-50%));
+    text-align:center;
+    color:#fff;
+    font-size:rem(20px);
+
+    p{
+        margin-bottom:20px;
+    }
+}
+
+.h-hero__title{
+    display:block;
+    margin-bottom:20px;
+    font-weight:400;
+    font-size:rem(32px);
+    color:#fff;
+    line-height:1.1;
+    text-transform:uppercase;
+
+
+    b, strong{
+        font-weight:700;
+    }
+}
+
+.h-hero__btn{
+    @extend .g-clearbutton;
+    height:46px;
+    padding:0 15px;
+    line-height:42px;
+    color:$primary-alt;
+    border:2px solid $primary-alt;
+    font-size:rem(16px);
+
+    @extend .g-shadow-hover;
+}
+
+
+@include media($tablet){
+    .h-hero{
+        font-size:rem(22px);
+
+        p{
+            margin-bottom:30px;
+        }
+    }
+
+    .h-hero__title{
+        margin-bottom:30px;
+        font-size:rem(36px);
+    }
+}
+
+
+@include media($desktop){
+    .h-hero{
+        @include font-size(24px);
+        p{
+            margin-bottom:45px;
+        }
+    }
+    .h-hero__title{
+        @include font-size(56px);
+        margin-bottom:45px;
+    }
+
+    .h-hero__btn{
+        height:60px;
+        line-height:52px;
+        border-width:4px;
+        @include font-size(22px);
+    }
+}

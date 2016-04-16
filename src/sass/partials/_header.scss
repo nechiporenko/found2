@@ -1,0 +1,37 @@
+@import "../modules/base";
+/*Site Header*/
+.b-header{
+    position:relative;
+}
+
+.b-header__inner{
+    width:100%;
+    padding:18px 0;
+    color:#fff;
+    background:#383971;
+
+    @include media($desktop){
+        padding:40px 0;
+    }
+}
+
+
+.b-header--has-slider{
+    height:100%;
+    max-height:1020px;
+
+    .b-header__inner{
+        position:absolute;
+        top:0; left:0;
+        z-index:1000;
+        background:none;
+    }
+}
+
+@import "header/_logo.scss";
+@import "header/_lang.scss";
+@import "header/_mobile.scss";
+@import "header/_header-buttons.scss";
+@import "header/_info.scss";
+@import "header/_header-slider.scss";
+@import "header/_header-slider-hero.scss";

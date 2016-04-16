@@ -1,0 +1,58 @@
+﻿@import "../modules/_base.scss";
+/*Page*/
+.page__section{
+    padding:20px 0;
+    background:#fff;
+    @extend .g-resp-text;
+
+    @include media($tablet){
+        padding:30px 0;
+    }
+
+    @include media($desktop){
+        padding:45px 0;
+    }
+}
+
+.page__section--alt{
+    background:#f2f2f2;
+}
+
+/*Page Title*/
+.page-title{
+    display:block;
+    width:90%;
+    max-width:768px;
+    margin:0 auto 30px;
+    @include font-size(24px);
+    font-weight:400;
+    text-align:center;
+    color:$title-color;
+    border-bottom:3px solid $title-color;
+    line-height:1.25;
+}
+
+.page-title__inner{
+    display:inline-block;
+    padding:5px 10px;
+    background:$primary-alt;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+
+    @include media($tablet){
+        padding:5px 30px;
+    }
+
+    @include media($desktop){
+        padding:5px 70px;
+    }
+}
+
+
+@import "page/_breadcrumbs.scss";
+@import "page/_benefits.scss";//инфо-блок с иконками
+@import "page/_slider.scss";//слайдер с объектами продажи
+@import "page/_scroll-up.scss";//кнопка скролла страницы
+
+
+

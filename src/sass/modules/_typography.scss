@@ -1,0 +1,98 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700&subset=latin,cyrillic);
+
+/*
+    Flaticon icon font: Flaticon
+*/
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+font-family: 'Flaticon';
+font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  margin-right: .2em;
+  margin-left: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-arrows:before { content: "\f100"; }
+.flaticon-arrows-1:before { content: "\f101"; }
+.flaticon-arrows-2:before { content: "\f102"; }
+.flaticon-close:before { content: "\f103"; }
+.flaticon-mark:before { content: "\f104"; }
+.flaticon-social-network:before { content: "\f105"; }
+.flaticon-symbol:before { content: "\f106"; }
+.flaticon-technology:before { content: "\f107"; }
+.flaticon-three:before { content: "\f108"; }
+.flaticon-tool:before { content: "\f109"; }
+.flaticon-web:before { content: "\f10a"; }
+
+
+//icon font fontello
+@font-face {
+  font-family: 'fontello';
+  src: url('../fonts/fontello/font/fontello.eot?8612620');
+  src: url('../fonts/fontello/font/fontello.eot?8612620#iefix') format('embedded-opentype'),
+       url('../fonts/fontello/font/fontello.woff?8612620') format('woff'),
+       url('../fonts/fontello/font/fontello.ttf?8612620') format('truetype'),
+       url('../fonts/fontello/font/fontello.svg?8612620#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 1em;
+  margin-right: .2em;
+  margin-left: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ 
+.icon-search:before { content: '\e800'; } /* '' */
+.icon-mail:before { content: '\e801'; } /* '' */
+.icon-cancel:before { content: '\e802'; } /* '' */
+.icon-ok:before { content: '\e803'; } /* '' */
+.icon-phone:before { content: '\e804'; } /* '' */
+.icon-right-open-big:before { content: '\e806'; } /* '' */
+.icon-left-open-big:before { content: '\e807'; } /* '' */
+.icon-down-open-big:before { content: '\e808'; } /* '' */
+.icon-up-open-big:before { content: '\e809'; } /* '' */
+.icon-menu:before { content: '\e80e'; } /* '' */
+.icon-down-dir:before { content: '\e80f'; } /* '' */
+.icon-copyright:before { content: '\e815'; } /* '' */
+.icon-up-dir:before { content: '\e818'; } /* '' */
