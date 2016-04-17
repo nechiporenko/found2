@@ -24,12 +24,16 @@
     width:90%;
     max-width:768px;
     margin:0 auto 30px;
-    @include font-size(24px);
+    font-size:rem(20px);
     font-weight:400;
     text-align:center;
     color:$title-color;
     border-bottom:3px solid $title-color;
     line-height:1.25;
+
+    @include media($tablet){
+        @include font-size(24px);
+    }
 }
 
 .page-title__inner{

@@ -1,0 +1,142 @@
+﻿@import "../../modules/_base.scss";
+/*Filter*/
+.b-filter{
+
+}
+.b-filter__list{
+    padding:0;
+    margin-bottom:32px;
+    list-style-type:none;
+    line-height:1;
+}
+.b-filter__item{
+    display:block;
+
+    @include media($desktop){
+        &:first-child{
+            .b-filter__link{
+                padding-left:24px;
+            }
+            
+        }
+    }
+}
+.b-filter__link{
+    display:block;
+    padding:12px 20px;
+    font-size:rem(20px);
+    text-decoration:none;
+    color:$text-color;
+    line-height:1.2;
+
+    @include media($desktop){
+        padding:8px 20px 8px 40px;
+        @include font-size(24px);
+    }
+
+    &:hover,
+    &:active{
+        color:$primary;
+        background:#ebebeb;
+    }
+
+    &.current{
+        color:#fff;
+        background:#696bb6;
+        cursor:default;
+    }
+}
+
+.b-filter__list--main{
+    .b-filter__item{
+        margin-bottom:24px;
+    }
+    .b-filter__link{
+        background:#ebebeb;
+        @include media($desktop){
+            @include font-size(22px);
+            padding:9px 24px;
+        }
+    }
+}
+
+.b-filter__label{
+    display:block;
+    margin-bottom:5px;
+    line-height:1.2;
+    padding-left:20px;
+}
+
+.b-filter__select{
+    @extend .g-select;
+    height:44px;
+    border:2px solid #000;
+}
+
+/*Filter search form*/
+.f-search{
+    position:relative;
+}
+.f-search__input{
+    @extend .g-input;
+    margin-bottom:32px;
+    height:48px;
+    border:2px solid #000;
+    padding-right:48px;
+}
+
+.f-search__btn{
+    @extend .g-clearbutton;
+    @include size(44px);
+    color:#000;
+    position:absolute;
+    top:2px; right:2px;
+    &:hover,
+    &:active{
+        color:$primary;
+    }
+}
+
+/*Subscribe form*/
+.f-subscribe{
+    padding:10px;
+    margin-bottom:32px;
+    border:2px solid #000;
+    box-sizing:border-box;
+    background:#fefbc0;
+}
+.f-subscribe__title{
+    display:block;
+    margin-bottom:20px;
+    line-height:1.25;
+    text-align:center;
+    @include font-size(22px);
+}
+.f-subscribe__input{
+    @extend.g-input;
+    margin-bottom:15px;
+    height:48px;
+}
+
+.f-subscribe__btn{
+    display:block;
+    width:100%;
+    margin-bottom:5px;
+    vertical-align:middle;
+    box-sizing:border-box;
+    height:48px;
+    border:2px solid #000;
+    line-height:44px;
+    @include font-size(20px);
+    font-weight:600;
+    text-align:center;
+    text-transform:uppercase;
+    background:#fff100;
+    @extend .g-shadow-hover;
+
+    &:active,
+    &:focus{
+        background:darken(#fff100, 5%);
+        outline:0;
+    }
+}

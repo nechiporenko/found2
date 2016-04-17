@@ -3,6 +3,7 @@
 .h-hero{
     position:absolute;
     top:50%; left:0;
+    padding-top:80px;
     z-index:60;//50 - z-index в слайдере
     width:100%;
     @include transform(translateY(-50%));
@@ -45,6 +46,7 @@
 
 @include media($tablet){
     .h-hero{
+        padding-top:0;
         font-size:rem(22px);
 
         p{
