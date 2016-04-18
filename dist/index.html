@@ -19,7 +19,7 @@
     <header class="b-header b-header--has-slider">
         <!--header inner-->
         <div class="b-header__inner">
-            <nav class="g-container">
+            <nav class="b-header__container">
                 <!--logo-->
                 <a href="index.html" class="h-logo">
                     Фонд Державного Майна України
@@ -52,8 +52,8 @@
                 </ul>
                 <!--/lang-->
 
-                <button type="button" class="b-header__btn b-header__btn--search"><i class="flaticon-tool"></i></button>
-                <button type="button" class="b-header__btn b-header__btn--menu"><i class="flaticon-three"></i></button>
+                <button type="button" class="b-header__btn b-header__btn--search js-search-toggle"><i class="icomoon-search"></i></button>
+                <button type="button" class="b-header__btn b-header__btn--menu js-mm-toggle"><i class="icomoon-menu"></i></button>
                 <!--header desktop info-->
                 <div class="b-header__info">
                     Допомога <a href="tel:08001234567" class="b-header__link">0 800 123 45 67</a>
@@ -64,17 +64,27 @@
                 <div class="b-header__mobile">
                     <ul class="h-mobile">
                         <li class="h-mobile__item">
-                            <a href="mailto:help@privatization.gov.ua" class="h-mobile__btn"><i class="flaticon-web"></i></a>
+                            <a href="mailto:help@privatization.gov.ua" class="h-mobile__btn"><i class="icomoon-mail"></i></a>
                         </li>
                         <li class="h-mobile__item">
-                            <a href="tel:08001234567" class="h-mobile__btn"><i class="flaticon-technology"></i></a>
+                            <a href="tel:08001234567" class="h-mobile__btn"><i class="icomoon-phone"></i></a>
                         </li>
                         <li class="h-mobile__item">
-                            <button type="button" class="h-mobile__btn"><i class="flaticon-tool"></i></button>
+                            <button type="button" class="h-mobile__btn js-search-toggle"><i class="icomoon-search"></i></button>
                         </li>
                     </ul>
                 </div>
-                <!--/header mobile buttons-->               
+                <!--/header mobile buttons-->
+
+                <!--search form-->
+                <div class="b-header__search js-search">
+                    <form class="h-search">
+                        <label class="g-visuallyhidden">Пошук</label>
+                        <input type="text" class="h-search__input" placeholder="Пошук по сайту" />
+                        <button type="submit" class="h-search__btn"><i class="icomoon-search"></i></button>
+                    </form>
+                </div>
+                <!--/search form-->
             </nav>
         </div>
         <!--/header inner-->
@@ -127,7 +137,7 @@
                 <div class="g-container">
                     <h1 class="h-hero__title"><b>Про</b>зора приватизація стартувала!</h1>
                     <p>Нові об'єкти щотижня</p>
-                    <button type="button" class="h-hero__btn">Оберіть об'єкт приватизації</button>
+                    <a href="#objects" class="h-hero__btn">Оберіть об'єкт приватизації</a>
                 </div>
             </section>
             <!--/slider hero-->
@@ -269,7 +279,7 @@
                             <a href="#" class="slider__link">
                                 <figure class="slider__inner">
                                     <div class="slider__thumb">
-                                        <img src="http://placehold.it/380x250" class="slider__img" alt="Object" />
+                                        <img src="img/object.jpg" class="slider__img" alt="Object" />
                                     </div>
                                     <figcaption class="slider__caption">
                                         <span class="slider__title">Назва об'єкту</span>
@@ -284,15 +294,15 @@
         <!--/slider-->
 
         <!--filters & objects-->
-        <section class="page__section">
+        <section class="page__section" id="objects">
             <div class="g-container">
                 <h2 class="page-title">
                     <span class="page-title__inner">Об'єкти до приватизації</span>
                 </h2>
-                <div class="g-row">
+                <div class="page__grid page__grid--2col">
                     <!--filter-->
-                    <aside class="g-col g-col--one-fourth">
-                       <div class="b-filter">
+                    <aside class="page__col page__col--left">
+                       <div class="b-filter js-sticky">
                            <ul class="b-filter__list">
                                <li class="b-filter__item">
                                    <a href="#" class="b-filter__link">Всі об'єкти</a>
@@ -323,8 +333,9 @@
                            </ul>
 
                            <form class="f-search">
+                               <label class="g-visuallyhidden">Пошук</label>
                                <input type="text" class="f-search__input" placeholder="Пошук об'єктів" />
-                               <button type="submit" class="f-search__btn"><i class="flaticon-tool"></i></button>
+                               <button type="submit" class="f-search__btn"><i class="icomoon-search"></i></button>
                            </form>
 
                            <form class="f-subscribe">
@@ -334,20 +345,510 @@
                            </form>
                        </div>
                     </aside>
+
                     <!--filter-->
-                    <div class="g-col g-col--three-fourth">2</div>
+                    <div class="page__col page__col--main">
+                        <!--objects-->
+                        <ul class="object-list js-loadmore" data-total-items="54">
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/del/obj02.jpg" class="b-object__img" alt="Object" />
+                                                <span class="b-object__tag">Новий</span>
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Їдальня</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Київська область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з підвищенням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/del/obj03.jpg" class="b-object__img" alt="Object" />
+                                                <span class="b-object__tag">Новий</span>
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Дитячий садок (недобудова)</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Запорізька область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з підвищенням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/del/obj01.jpg" class="b-object__img" alt="Object" />
+                                                <span class="b-object__tag b-object__tag--alt">Повторно</span>
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Торгівельний комплекс</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Кіровоградська область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з пониженням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/object.jpg" class="b-object__img" alt="Object" />
+                                                <span class="b-object__tag">Новий</span>
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">ДП «Енергомонтажний поїзд №754» (із земельною ділянкою)</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Кіровоградська область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з пониженням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/object.jpg" class="b-object__img" alt="Object" />
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Назва об'єкту</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Чернівецька область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з пониженням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/del/obj02.jpg" class="b-object__img" alt="Object" />
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Їдальня</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Київська область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з підвищенням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/del/obj03.jpg" class="b-object__img" alt="Object" />
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Автозаправний комплекс</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Запорізька область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з підвищенням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/del/obj01.jpg" class="b-object__img" alt="Object" />
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Торгівельний комплекс</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Кіровоградська область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з пониженням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="object-list__item">
+                                <div class="b-object">
+                                    <a href="#" class="b-object__link">
+                                        <figure class="b-object__inner">
+                                            <div class="b-object__thumb">
+                                                <img src="img/object.jpg" class="b-object__img" alt="Object" />
+                                            </div>
+                                            <figcaption class="b-object__caption">
+                                                <span class="b-object__title">Назва об'єкту</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                    <div class="b-object__card">
+                                        <table class="b-object__table">
+                                            <tr>
+                                                <td>Регіон</td>
+                                                <td><span class="g-truncate">Чернівецька область</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Тип аукціону</td>
+                                                <td><span class="g-truncate">з пониженням ціни</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Стартова ціна, грн</td>
+                                                <td>144 197 20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Гарантійний внесок</td>
+                                                <td>50 000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Прийом заявок до:</td>
+                                                <td>24.03.2016</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Дата і час торгів</td>
+                                                <td>02.04.2016</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--/objects-->
+                    </div>
                 </div><!--/g-row-->
             </div><!--/g-container-->
         </section>
         <!--/filters & objects-->
     </main>
-        
-    <div class="modal" id="modal">
-        <div class="modal__content">
-            <span class="g-title">Modal Title</span>
-            <p>Modal content...</p>
+
+    <footer class="b-footer">
+        <div class="b-footer__inner">
+            <div class="b-footer__partners">
+                <span class="b-footer__title">Підготовка найбільших об’єктів здійснюється спільно з:</span>
+                <ul class="partner-list">
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-usaid.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-ebrd.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-imf.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-baker.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-ifc.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-pwc.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-delloite.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                    <li class="partner-list__item">
+                        <a href="#" class="partner-list__link">
+                            <img src="img/partners/partner-ey.png" class="partner-list__img" alt="Logo" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="b-footer__main">
+                <span class="b-footer__title">Контакти</span>
+                <p>
+                    Фонд державного майна України:
+                    <br />
+                    01601, м. Київ, вул. Кутузова, 18/9 (ст. метро 'Печерська')
+                    <br />
+                    Факc: (38 044) 286-79-85
+                </p>
+                <ul class="f-social">
+                    <li class="f-social__item">
+                        <a href="#" class="f-social__link" rel="nofollow" target="_blank">
+                            <i class="icomoon-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="f-social__item">
+                        <a href="#" class="f-social__link" rel="nofollow" target="_blank">
+                            <i class="icomoon-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="b-footer__copyright">
+                    © 2016 Фонд державного майна України
+                    <br />
+                    Розробник: <a href="#" target="_blank" rel="nofollow">kitsoft</a>
+                </div>
+            </div>
         </div>
-    </div>
+        <!--mobile menu-->
+        <div class="page__panel js-mm">
+            <ul class="m-menu">
+                <li class="m-menu__item">
+                    <label class="m-menu__label">Меню</label>
+                </li>
+                <li class="m-menu__item">
+                    <a href="index.html" class="m-menu__link current">Головна</a>
+                </li>
+                <li class="m-menu__item">
+                    <a href="about.html" class="m-menu__link">Про фонд</a>
+                </li>
+                <li class="m-menu__item">
+                    <a href="sale.html" class="m-menu__link">Умови продажу</a>
+                </li>
+                <li class="m-menu__item">
+                    <a href="partners.html" class="m-menu__link">Біржі-партнери</a>
+                </li>
+                <li class="m-menu__divider"></li>
+                <li class="m-menu__item">
+                    <label class="m-menu__label">Оберіть мову:</label>
+                </li>
+                <li class="m-menu__item">
+                    <a href="#" hreflang="uk" class="m-menu__link current">Українська</a>
+                </li>
+                <li class="m-menu__item">
+                    <a href="#" hreflang="ru" class="m-menu__link">Російська</a>
+                </li>
+                <li class="m-menu__item">
+                    <a href="#" hreflang="en" class="m-menu__link">English</a>
+                </li>
+            </ul>
+        </div>
+        <!--/mobile menu-->
+    </footer>
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>

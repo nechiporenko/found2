@@ -1,0 +1,80 @@
+﻿@import "_base.scss";
+/*Animations*/
+/*
+==============================================
+showItem
+==============================================
+*/
+
+.showItem-1,
+.showItem-2,
+.showItem-3{
+    visibility: visible !important;	
+}
+
+.showItem-1{
+    @include animation-name(showItem-1);
+    @include animation-duration(1s);
+    @include animation-timing-function(ease);
+}
+
+.showItem-2{
+    @include animation-name(showItem-2);
+    @include animation-duration(1.2s);
+    @include animation-timing-function(ease-in);
+}
+
+.showItem-3{
+    @include animation-name(showItem-3);
+    @include animation-duration(1.4s);
+    @include animation-timing-function(ease-out);
+}
+
+@include keyframes(showItem-1){
+    0% {
+		@include transform(scale(0.4));
+		opacity: 0;		
+	}
+	60% {
+        @include transform(scale(1.04));
+	}
+	80% {
+		opacity: 1;	
+	}	
+	100% {
+		@include transform(scale(1));
+	}		
+}
+
+@include keyframes(showItem-2){
+    0% {
+		@include transform(scale(0.6));
+		opacity: 0;		
+	}
+	60% {
+        @include transform(scale(1.04));
+	}
+	80% {
+		opacity: 1;	
+	}	
+	100% {
+		@include transform(scale(1));
+	}		
+}
+
+@include keyframes(showItem-3){
+    0% {
+		@include transform(scale(0.8));
+		opacity: 0;		
+	}
+	60% {
+        @include transform(scale(1.04));
+	}
+	80% {
+		opacity: 1;	
+	}	
+	100% {
+		@include transform(scale(1));
+	}		
+}
+

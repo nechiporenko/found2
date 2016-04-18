@@ -1,0 +1,90 @@
+﻿@import "../../modules/_base.scss";
+/*Object (list block)*/
+.b-object{
+    max-width:380px;
+    margin:0 auto 20px;
+    line-height:1;
+    @extend .g-shadow-hover;
+}
+.b-object__link{
+    display:block;
+    text-decoration:none;
+    color:#fff;
+
+    &:hover,
+    &:active{
+        color:$primary-alt;
+        .b-object__img{
+            opacity:.8;
+        }
+    }
+}
+.b-object__inner{
+    margin:0;
+    position:relative;
+}
+.b-object__thumb{
+    @extend .slider__thumb;
+}
+.b-object__img{
+    @extend .slider__img;
+}
+
+.b-object__tag{
+    display:inline-block;
+    height:24px;
+    padding:0 20px;
+    line-height:24px;
+    white-space:nowrap;
+    @include font-size(13px);
+    font-weight:600;
+    color:$title-color;
+    background:$primary-alt;
+    position:absolute;
+    top:0; right:0;
+    z-index:2;
+}
+
+.b-object__tag--alt{
+    background:$primary;
+    color:#fff;
+}
+
+.b-object__caption{
+    @extend .slider__caption;
+    height:56px;
+}
+.b-object__title{
+    @extend .slider__title;
+    max-height:46px;
+
+    @include media($desktop){
+        @include font-size(18px);
+    }
+}
+.b-object__card{
+    border:2px solid $border-color;
+    border-top:none;
+    @include font-size(13px);
+    @include px2rem(letter-spacing, -.7px);
+}
+
+.b-object__table{
+    margin-bottom:0;
+    @extend .g-full-width;
+    table-layout:fixed;
+
+    tbody td{
+        padding:10px 5px;
+
+        &:first-child{
+            padding-left:12px;
+            font-weight:700;
+        }
+    }
+    tbody tr:nth-child(odd){
+        td{
+            background:#ebebeb;
+        }
+    }
+}

@@ -1,8 +1,13 @@
 // Application Scripts:
 
 // Мобильное меню
+// Покажем / спрячем форму поиска в хидере
 // Fullpage слайдер на главной странице
+// Слайдер объектов продажи
+// Фиксируем фильтры при скролле
+// Дозагрузка контента при скролле
 // Кнопка скролла страницы
+// Стилизация Select
 // Модальное окно
 
 jQuery(document).ready(function ($) {
@@ -12,31 +17,154 @@ jQuery(document).ready(function ($) {
     // Мобильное меню
     //---------------------------------------------------------------------------------------
     (function () {
-        //...
+        var $menu = $('.js-mm'),
+            $toggle_btn = $('.js-mm-toggle'),
+            $html = $('html'),
+            $overlay=$('#overlay'),
+            method = {};
+
+        $menu.find('.m-menu__label').filter(':first').addClass('m-menu__label--close');
+
+        $toggle_btn.on('click', function () {
+            if ($(this).hasClass('active')) {
+                method.close();
+            } else {
+                method.show();
+            }
+        });
+
+        $menu.on('click', '.m-menu__label--close', function () {
+            method.close();
+        });
+
+        method.show = function () {
+            $html.css('overflow', 'hidden');
+            $overlay.show().bind('click', method.close);
+            $toggle_btn.addClass('active');
+            $menu.addClass('active');
+        };
+
+        method.close = function () {
+            $overlay.hide().unbind('click', method.close);
+            $toggle_btn.removeClass('active');
+            $menu.removeClass('active');
+            $html.css('overflow', 'auto');
+        };
+    })();
+
+    //
+    // Покажем / спрячем форму поиска в хидере
+    //---------------------------------------------------------------------------------------
+    (function () {
+        var $form = $('.js-search'),
+            $btn = $('.js-search-toggle'),
+            $body=$('body'),
+            method = {};
+        method.showForm = function () {
+            $btn.addClass('active');
+            $form.fadeIn(400).find('input').focus();
+
+            $form.find('.h-search').on('mouseleave', function () {
+                $body.bind('click', method.hideForm);
+            }).on('mouseenter', function () {
+                $body.unbind('click', method.hideForm);
+            });
+        };
+
+        method.hideForm = function () {
+            $btn.removeClass('active');
+            $form.fadeOut(400);
+            $body.unbind('click', method.hideForm);
+        };
+
+        $btn.on('click', function () {
+            if ($(this).hasClass('active')) {
+                method.hideForm();
+            } else {
+                method.showForm();
+            }
+        });
     })();
 
     //
     // Fullpage слайдер на главной странице
     //---------------------------------------------------------------------------------------
     function initHeaderSlider() {
-        var slider = $('.js-headerslider');
-        slider.bxSlider({
-            mode: 'fade',
-            controls: false,
-            auto: true,
-            pause:8000
-        });
+        var slider = $('.js-headerslider'),
+            $outer = $('.b-header'),
+            rtime, //переменные для пересчета ресайза окна с задержкой delta
+            timeout = false,
+            delta = 200,
+            winH = $.viewportH(),
+            method = {};
+        
+
+        method.initSlider = function () {
+            slider.bxSlider({
+                mode: 'fade',
+                controls: false,
+                auto: true,
+                pause: 8000
+            });
+        };
+        
+        method.setMaxHeight = function () {
+            if (winH > 1020) {
+                winH = 1020;
+            };
+            $outer.css('height', winH + 'px');
+        };
+
+        method.checkResize = function () {//без этого метода на мобильных будет происходить дергание контента при скролле (когда прячется - показывается тулбар браузера)
+             var newWinH = $.viewportH();
+
+             if (Math.abs((newWinH - winH) / winH) > .15) {
+                 console.log(Math.abs((newWinH - winH) / winH));
+                 winH = newWinH;
+                 method.setMaxHeight();
+             };
+        };
+
+        method.endResize = function () {
+            if (new Date() - rtime < delta) {
+                setTimeout(method.endResize, delta);
+            } else {
+                timeout = false;
+                //ресайз окончен - пересчитываем
+                method.checkResize();
+            }
+        };
+
+        method.startResize = function () {
+            rtime = new Date();
+            if (timeout === false) {
+                timeout = true;
+                setTimeout(method.endResize, delta);
+            }
+        };
+
+        method.setMaxHeight();
+        method.initSlider();
+        $(window).bind('resize', method.startResize);
+
         $('.b-header__slider').find('.bx-pager-item').hover(function () {//поставим слайдер на паузу при наведении на пейджер
             slider.stopAuto();
         }, function () {
             slider.startAuto();
+        });
+
+        $('.h-hero').on('click', '.h-hero__btn', function (e) {//плавный скролл к секции при клике на кнопку
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 800);
         });
     };
     if ($('.js-headerslider').length) { initHeaderSlider(); }
 
 
     //
-    // Слайдер
+    // Слайдер объектов продажи
     //---------------------------------------------------------------------------------------
     function initSlider() {
         var $slider = $('.js-slider'),
@@ -90,8 +218,8 @@ jQuery(document).ready(function ($) {
                         infiniteLoop: false,
                         hideControlOnEnd: true,
                         useCSS: false,
-                        nextText: '<i class="flaticon-arrows-1"></i>',
-                        prevText: '<i class="flaticon-arrows-2"></i>',
+                        nextText: '<i class="icomoon-arrow-right"></i>',
+                        prevText: '<i class="icomoon-arrow-left"></i>',
                     },
                     winW = $.viewportW();
             if (winW < 450) {
@@ -117,7 +245,7 @@ jQuery(document).ready(function ($) {
 
         method.reloadSliderSettings = function () {
             $slider.reloadSlider($.extend(method.getSliderSettings(), { startSlide: $slider.getCurrentSlide() }));
-        }
+        };
 
 
         method.endResize = function () {
@@ -128,7 +256,7 @@ jQuery(document).ready(function ($) {
                 //ресайз окончен - пересчитываем
                 method.reloadSliderSettings();
             }
-        }
+        };
 
         method.startResize = function () {
             rtime = new Date();
@@ -136,7 +264,7 @@ jQuery(document).ready(function ($) {
                 timeout = true;
                 setTimeout(method.endResize, delta);
             }
-        }
+        };
 
         $slider.bxSlider(method.getSliderSettings());//запускаем слайдер
 
@@ -146,10 +274,124 @@ jQuery(document).ready(function ($) {
     if ($('.js-slider').length) { initSlider() }
 
     //
+    // Фиксируем фильтры при скролле
+    //---------------------------------------------------------------------------------------
+    function stickyFilter() {
+        var stick_breakpoint = 768, //на меньших экранах - будем отключать
+            flag = false, //статус - фиксировано или нет
+            $filter = $('.js-sticky'),
+            rtime, //переменные для пересчета ресайза окна с задержкой delta
+            timeout = false,
+            delta = 200,
+            method = {};
+
+        method.stick = function () {
+            $filter.stick_in_parent({//фиксируем
+                parent: $('.js-sticky').parents('.page__grid'),
+            });
+            flag = true;
+        };
+
+        method.unstick = function () {
+            $filter.trigger('sticky_kit:detach');
+            flag = false;
+        };
+
+        method.recalc = function () {//если раскрыли - скрыли подменю и меню фиксировано - пересчитаем размер, чтобы убрать "прыжки" при скролле
+            if (flag) {
+                $filter.trigger('sticky_kit:recalc');
+            };
+        };
+
+        method.checkout = function () {
+            winW = $.viewportW();
+            if (winW >= 768 && !flag) {
+                method.stick();
+            }
+            if (winW < 768 && flag) {
+                method.unstick();
+            };
+        };
+
+        method.endResize = function () {
+            if (new Date() - rtime < delta) {
+                setTimeout(method.endResize, delta);
+            } else {
+                timeout = false;
+                //ресайз окончен - пересчитываем
+                method.checkout();
+            };
+        };
+
+        method.startResize = function () {
+            rtime = new Date();
+            if (timeout === false) {
+                timeout = true;
+                setTimeout(method.endResize, delta);
+            }
+        };
+
+        method.checkout();//проверили на старте
+        $(window).bind('resize', method.startResize);//проверяем, нужно ли фиксировать при ресайзе окна
+    };
+    if ($('.js-sticky').length) { stickyFilter(); }
+
+
+    //
+    // Дозагрузка контента при скролле
+    //---------------------------------------------------------------------------------------
+    function loadMoreObjects() {
+        var $list = $('.js-loadmore'), //список новостей
+            total = +$list.data('total-items'), //через дата-атрибут задаем максимальное кол-во блоков на странице
+            $overlay = $('#overlay'),
+            $window=$(window),
+            method = {};
+
+
+        method.checkTotal = function () {//проверяем сколько элементов списка загружено
+            var count = $list.children('li').length;
+            if (count < total) {//если загружено меньше чем указано, включаем отслеживание скролла
+                $window.bind('scroll', method.scrollToEnd);
+            }
+        };
+
+
+        method.scrollToEnd = function () {//когда докрутили до нижней точки - догружаем контент и отключаем отслеживание
+            var $last = $list.children('li:last-child'),
+                itemHeight=$last.outerHeight(),//берем последний элемент списка
+                isBottom = verge.inY($last, -itemHeight);
+            
+            if (isBottom) {
+                $window.unbind('scroll', method.scrollToEnd);
+                $list.after('<ul class="g-hidden" id="hidden"></ul>');
+                var $hidden = $('#hidden');
+                $hidden.load('ajax/_more-content.html li', function () {
+                    var i = 0;
+                    $hidden.find('li').each(function () {
+                        i++;
+                        var $item = $(this);
+                        if (i <= 3) {
+                            $item.addClass('g-invisible');
+                        };
+                        $list.append($item); //добавили в список
+                        if (i <= 3) {
+                            $item.addClass('showItem-' + i);
+                        };
+                    });
+                    $hidden.remove();
+                    method.checkTotal();//новая проверка кол-ва загруженных новостей
+                });
+            };
+        };
+        method.checkTotal();
+    };
+    if ($('.js-loadmore').length) { loadMoreObjects();}
+
+    //
     // Кнопка скролла страницы
     //---------------------------------------------------------------------------------------
     (function () {
-        var $scroller = $('<div class="scroll-up-btn"><i class="icon-up-open-big"></i></div>');
+        var $scroller = $('<div class="scroll-up-btn"><i class="icomoon-up"></i></div>');
         $('body').append($scroller);
         $(window).on('scroll', function () {
             if ($(this).scrollTop() > 300) {
@@ -163,6 +405,20 @@ jQuery(document).ready(function ($) {
             return false;
         });
     })();
+
+    //
+    // Стилизация Select
+    //---------------------------------------------------------------------------------------
+    function stylingSelect() {
+        var $select = $('.js-select');
+        $select.each(function () {
+            $(this).selectric({
+                disableOnMobile: false,
+                responsive: true
+            });
+        });
+    }
+    if ($('.js-select').length) { stylingSelect(); }
 
     //
     // Модальное окно

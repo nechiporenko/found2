@@ -15,6 +15,11 @@
     }
 }
 
+.b-header__container{
+    @extend .g-container;
+    position:relative;
+}
+
 
 .b-header--has-slider{
     height:100%;
@@ -35,3 +40,4 @@
 @import "header/_info.scss";
 @import "header/_header-slider.scss";
 @import "header/_header-slider-hero.scss";
+@import "header/_search-form.scss";

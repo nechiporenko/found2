@@ -57,7 +57,7 @@
     &:after{
         content:'';
         display:block;
-        padding-top:65.78947%;//380x250
+        padding-top:(250*100%/380);//380x250
     }
 }
 
@@ -80,12 +80,14 @@
     text-align:center;
     line-height:1.2;
     box-sizing:border-box;
-    overflow:hidden;
 }
 .slider__title{
     display:inline-block;
+    max-height:62px;
     font-size:rem(16px);
     @extend .g-valign;
+    @include px2rem(letter-spacing, -.6px);
+    overflow:hidden;
 
     @include media($tablet){
         font-size:rem(18px);

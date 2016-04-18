@@ -53,6 +53,8 @@
     }
     .b-filter__link{
         background:#ebebeb;
+        font-size:rem(18);
+
         @include media($desktop){
             @include font-size(22px);
             padding:9px 24px;
@@ -114,6 +116,7 @@
 }
 .f-subscribe__input{
     @extend.g-input;
+    border-width:2px;
     margin-bottom:15px;
     height:48px;
 }

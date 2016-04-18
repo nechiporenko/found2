@@ -1,3 +1,62 @@
 @import "../modules/base";
-
 /*Site Footer*/
+.b-footer{
+    padding:30px 0 15px;
+    background:#212121;
+    color:#fff;
+}
+
+.b-footer__inner{
+    @extend .g-container;
+}
+
+.b-footer__main,
+.b-footer__partners{
+    @extend .g-column;
+    padding:0;
+}
+
+.b-footer__partners{
+    margin-bottom:20px;
+    text-align:center;
+}
+
+@include media($tablet){
+    .b-footer__partners{
+        width:(2*(100%/3) - 1.6);
+        margin-bottom:0;
+        text-align:left;
+    }
+
+    .b-footer__main{
+        width:(100%)/3;
+        margin-left: 1.6%;
+    }
+}
+
+@include media($desktop){
+    .b-footer__partners{
+        width:(7*(100%/12) - 1.6);
+    }
+
+    .b-footer__main{
+        width:5*(100%)/12;
+        margin-left: 1.6%;
+    }
+}
+
+.b-footer__title{
+    display:block;
+    margin-bottom:15px;
+    color:#fff;
+    line-height:1.1;
+    @include font-size(16px);
+    font-weight:600;
+
+    @include media($large){
+        @include font-size(22px);
+    }
+}
+
+@import "footer/_footer-main.scss";
+@import "footer/_footer-partners.scss";

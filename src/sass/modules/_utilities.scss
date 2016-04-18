@@ -89,3 +89,10 @@ img.g-full-width{clear:both;display:block;width:100%;height:auto;margin:0 0 0 0;
     top:50%;
     @include transform(translateY(-50%));
 }
+
+.g-truncate{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

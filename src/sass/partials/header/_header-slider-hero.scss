@@ -39,8 +39,13 @@
     color:$primary-alt;
     border:2px solid $primary-alt;
     font-size:rem(16px);
+    text-decoration:none;
 
-    @extend .g-shadow-hover;
+    &:hover,
+    &:active{
+        border-color:#fff;
+        color:#fff;
+    }
 }
 
 

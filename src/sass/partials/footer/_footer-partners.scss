@@ -1,0 +1,21 @@
+﻿@import "../../modules/_base.scss";
+/*Footer Partners block*/
+.partner-list{
+    @extend .g-clearlist;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.partner-list__item{
+    display:inline-block;
+}
+.partner-list__link{
+    display:block;
+    margin:10px 0;
+}
+
+.no-flexbox{
+    .partner-list__link{
+        padding:0 15px;
+    }
+}
