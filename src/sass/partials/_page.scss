@@ -18,6 +18,12 @@
     background:#f2f2f2;
 }
 
+.page__section--article{
+    b, strong{
+        @extend .g-bright-text;
+    }
+}
+
 /*Page Title*/
 .page-title{
     display:block;
@@ -25,7 +31,7 @@
     max-width:768px;
     margin:0 auto 30px;
     font-size:rem(20px);
-    font-weight:400;
+    font-weight:600;
     text-align:center;
     color:$title-color;
     border-bottom:3px solid $title-color;
@@ -88,6 +94,7 @@
 @import "page/_slider.scss";//слайдер с объектами продажи
 @import "page/_object-list.scss";//список объектов
 @import "page/_object-item.scss";//блок-объект в списке
+@import "page/_page-partners-list.scss"; //список партнеров на странице
 @import "page/_scroll-up.scss";//кнопка скролла страницы
 
 

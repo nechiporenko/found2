@@ -1,10 +1,19 @@
 ﻿@import "../../modules/_base.scss";
 /*List of objects*/
 .object-list{
-    @extend .g-clearfix;
     list-style-type:none;
     padding:0;
-    margin:0 -10px;
+    margin:0 -10px; 
+    overflow:hidden;
+
+    @include media($tablet){
+        margin-bottom:300px; //нижний марджин нужен для того, чтобы при дозагрузке элементов списка не "дергался" зафиксированнный на десктопе фильтр 
+    }
+}
+
+.object-list.loaded,
+.no-js .object-list{
+    margin-bottom:0;
 }
 
 .object-list__item{

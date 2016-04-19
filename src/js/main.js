@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
             method = {};
         method.showForm = function () {
             $btn.addClass('active');
-            $form.fadeIn(400).find('input').focus();
+            $form.fadeIn(400).find('input').filter(':first').focus();
 
             $form.find('.h-search').on('mouseleave', function () {
                 $body.bind('click', method.hideForm);
@@ -116,13 +116,12 @@ jQuery(document).ready(function ($) {
         };
 
         method.checkResize = function () {//без этого метода на мобильных будет происходить дергание контента при скролле (когда прячется - показывается тулбар браузера)
-             var newWinH = $.viewportH();
+            var newWinH = $.viewportH();
 
-             if (Math.abs((newWinH - winH) / winH) > .15) {
-                 console.log(Math.abs((newWinH - winH) / winH));
-                 winH = newWinH;
-                 method.setMaxHeight();
-             };
+            if (Math.abs((newWinH - winH) / winH) > .15) {//отслеживаем изменение разрешения более чем на 15% по высоте
+                winH = newWinH;
+                method.setMaxHeight();
+            };
         };
 
         method.endResize = function () {
@@ -352,6 +351,8 @@ jQuery(document).ready(function ($) {
             var count = $list.children('li').length;
             if (count < total) {//если загружено меньше чем указано, включаем отслеживание скролла
                 $window.bind('scroll', method.scrollToEnd);
+            } else {
+                $list.addClass('loaded');
             }
         };
 

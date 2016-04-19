@@ -20,7 +20,7 @@
     display:block;
     margin-bottom:20px;
     font-weight:400;
-    font-size:rem(32px);
+    font-size:rem(18px);
     color:#fff;
     line-height:1.1;
     text-transform:uppercase;
@@ -28,6 +28,14 @@
 
     b, strong{
         font-weight:700;
+    }
+
+    @include media(min-height 320px){
+        font-size:rem(24px);
+    }
+
+    @include media($small){
+        font-size:rem(32px);
     }
 }
 

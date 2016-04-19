@@ -139,6 +139,17 @@ $loader:   '../img/loader.gif';
 @include media($large){
     .bx-wrapper{
         .bx-prev {
+		    left: -10px;
+	    }
+	    .bx-next {
+		    right: -10px;
+	    }
+    }
+}
+
+@include media(min-width 1300px){
+    .bx-wrapper{
+        .bx-prev {
 		    left: -30px;
 	    }
 	    .bx-next {

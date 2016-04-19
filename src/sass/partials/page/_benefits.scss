@@ -28,18 +28,16 @@
     width:133px;
     height:120px;
     margin:0 auto 20px;
-    background:url(../img/benefits.png) no-repeat;
+    position:relative;
+
+    svg{
+        position:absolute;
+        left:50%;
+        bottom:0;
+        @include transform(translateX(-50%));
+    }
 }
 
-.benefits__img--1{
-    background-position:0 0;
-}
-.benefits__img--2{
-    background-position:0 -125px;
-}
-.benefits__img--3{
-    background-position:0 -250px;
-}
 
 .benefits__caption{
     line-height:1.25;

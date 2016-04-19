@@ -15,7 +15,11 @@
 
 .b-header__link{
     text-decoration:none;
-    color:$primary-alt;
+    color:#fef780;
+    &:hover,
+    &:active{
+        color:$primary-alt;
+    }
 }
 
 .b-header__link--mail{
