@@ -9,13 +9,6 @@
       @include px2rem(padding, $project-line-height/2 10px);
       border-bottom: 1px solid $border-color; 
     }
-
-    th:first-child,
-    td:first-child {
-      padding-left: 0; }
-    th:last-child,
-    td:last-child {
-      padding-right: 0; }
 }
 
 /*Make table scrollable on small screens*/

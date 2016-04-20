@@ -19,6 +19,23 @@
         }
     }
 }
+
+.slider--compact{
+    .bx-wrapper{
+        margin-bottom:40px;
+    }
+    @include media(min-width 1300px){
+    .bx-wrapper{
+        .bx-prev {
+		    left: -10px;
+	    }
+	    .bx-next {
+		    right: -10px;
+	    }
+    }
+}
+}
+
 .slider__list{
     @extend .g-clearlist;
     @extend .g-clearfix;

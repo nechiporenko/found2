@@ -35,7 +35,7 @@
     text-align:center;
     color:$title-color;
     border-bottom:3px solid $title-color;
-    line-height:1.25;
+    line-height:1.3;
 
     @include media($tablet){
         @include font-size(24px);
@@ -46,8 +46,6 @@
     display:inline-block;
     padding:5px 10px;
     background:$primary-alt;
-    white-space:nowrap;
-    text-overflow:ellipsis;
 
     @include media($tablet){
         padding:5px 30px;
@@ -68,7 +66,7 @@
 }
 
 
-.page__grid--2col{
+.page__grid--2col{//сперва покажем сайдбар (фильтр), затем осн.контент
     @include media($tablet){
         .page__col--left{
             width:(100%/3);
@@ -89,12 +87,46 @@
     }
 }
 
+
+.page__grid--2col-alt{//сперва покажем осн.контент, затем сайдбар
+    
+    @extend .page__grid--2col;
+
+    @include media($tablet){
+        .page__col--left{
+            padding-top:30px;
+        }
+        .page__col--main{
+            float:right;
+        }
+    }
+}
+
+
+/*Table (short object description)*/
+.page__table{
+    @extend .g-table;
+    border:2px solid $border-color;
+    font-size:rem(12px);
+    font-weight:600;
+    color:$title-color;
+
+    @include media($desktop){
+        @include font-size(15px);
+    }
+
+    tbody tr:nth-child(odd){
+        background:#ebebeb;
+    }
+}
+
 @import "page/_breadcrumbs.scss";
 @import "page/_benefits.scss";//инфо-блок с иконками
 @import "page/_slider.scss";//слайдер с объектами продажи
 @import "page/_object-list.scss";//список объектов
 @import "page/_object-item.scss";//блок-объект в списке
 @import "page/_page-partners-list.scss"; //список партнеров на странице
+@import "page/_steps.scss";//иконки шагов продажи
 @import "page/_scroll-up.scss";//кнопка скролла страницы
 
 

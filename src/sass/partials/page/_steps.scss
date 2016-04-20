@@ -1,0 +1,40 @@
+﻿@import "../../modules/_base.scss";
+/*Sale Steps section*/
+.steps{
+    @extend .benefits;
+}
+.steps__item{
+    @extend .benefits__item;
+}
+.steps__inner{
+    text-align:center;
+    line-height:1;
+}
+.steps__img{
+    @extend .benefits__img;
+
+    svg{
+        position:absolute;
+        left:50%;
+        bottom:0;
+        @include transform(translateX(-50%));
+    }
+}
+.steps__caption{
+    @include font-size(18px);
+    font-weight:600;
+    line-height:1.4;
+}
+.steps__num{
+    display:block;
+    @include size(44px);
+    border-radius:50%;
+    line-height:44px;
+    text-align:center;
+    @include font-size(36px);
+    font-weight:600;
+    background:$primary-alt;
+    position:absolute;
+    bottom:0;
+    left:-18px;
+}
