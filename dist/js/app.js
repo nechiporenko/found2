@@ -71,8 +71,7 @@ jQuery.extend(verge);
 // Мобильное меню
 // Покажем / спрячем форму поиска в хидере
 // Fullpage слайдер на главной странице
-// Слайдер объектов продажи (главная страница)
-// Слайдер объектов продажи (страница объекта - "компактная" версия)
+// Слайдер объектов продажи
 // Фиксируем фильтры при скролле
 // Дозагрузка контента при скролле
 // Кнопка скролла страницы
@@ -232,14 +231,19 @@ jQuery(document).ready(function ($) {
 
 
     //
-    // Слайдер объектов продажи (главная страница)
+    // Слайдер объектов продажи
     //---------------------------------------------------------------------------------------
     function initSlider() {
         var $slider = $('.js-slider'),
+            isCompact=false, //будем добавлять другие настройки разрешений для "компактной версии" слайдера
             rtime, //переменные для пересчета ресайза окна с задержкой delta
             timeout = false,
             delta = 200,
             method = {};
+
+        if ($slider.hasClass('js-slider--compact')) {
+            isCompact = true;
+        };
 
         method.getSliderSettings = function () {
             var setting,
@@ -247,39 +251,19 @@ jQuery(document).ready(function ($) {
                         maxSlides: 1,
                         minSlides: 1,
                         moveSlides: 1,
-                        slideWidth: 280,
                     },
                     settings2 = {
-                        maxSlides: 1,
-                        minSlides: 1,
-                        moveSlides: 1,
-                        slideWidth: 360,
-                    },
-                    settings3 = {
                         maxSlides: 2,
                         minSlides: 2,
                         moveSlides: 2,
-                        slideWidth: 280,
                     },
-                    settings4 = {
-                         maxSlides: 3,
-                         minSlides: 3,
-                         moveSlides: 3,
-                         slideWidth: 230,
-                    },
-                    settings5 = {
+                    settings3 = {
                         maxSlides: 3,
                         minSlides: 3,
                         moveSlides: 3,
-                        slideWidth: 320,
-                    },
-                    settings6 = {
-                        maxSlides: 3,
-                        minSlides: 3,
-                        moveSlides: 3,
-                        slideWidth: 380,
                     },
                     common = {
+                        slideWidth: 380,
                         slideMargin: 20,
                         auto: false,
                         mode: 'horizontal',
@@ -289,27 +273,32 @@ jQuery(document).ready(function ($) {
                         nextText: '<i class="icomoon-arrow-right"></i>',
                         prevText: '<i class="icomoon-arrow-left"></i>',
                     },
-                    winW = $.viewportW();
-            if (winW < 450) {
-                setting = $.extend(settings1, common);
-            }
-            if (winW >= 450 && winW < 600) {
-                setting = $.extend(settings2, common);
-            }
-            if (winW >= 600 && winW < 768) {
-                setting = $.extend(settings3, common);
-            }
-            if (winW >= 768 && winW < 1024) {
-                setting = $.extend(settings4, common);
-            }
-            if (winW >= 1024 && winW < 1200) {
-                setting = $.extend(settings5, common);
-            }
-            if (winW >= 1200) {
-                setting = $.extend(settings6, common);
-            }
+                    winW = $.viewportW(); //ширина окна
+
+            if (isCompact) {//настройки для слайдера на внутренней странице
+                if (winW < 600) {
+                    setting = $.extend(settings1, common);
+                };
+                if (winW >= 600 && winW < 1020) {
+                    setting = $.extend(settings2, common);
+                };
+                if (winW >= 1020) {
+                    setting = $.extend(settings3, common);
+                };
+            } else {//настройки для слайдера на главной странице
+                if (winW < 600) {
+                    setting = $.extend(settings1, common);
+                };
+                if (winW >= 600 && winW < 760) {
+                    setting = $.extend(settings2, common);
+                };
+                if (winW >= 760) {
+                    setting = $.extend(settings3, common);
+                };
+            };
+
             return setting;
-        }
+        };
 
         method.reloadSliderSettings = function () {
             $slider.reloadSlider($.extend(method.getSliderSettings(), { startSlide: $slider.getCurrentSlide() }));
@@ -340,100 +329,6 @@ jQuery(document).ready(function ($) {
     }
 
     if ($('.js-slider').length) { initSlider() }
-
-    //
-    // Слайдер объектов продажи (страница объекта - "компактная" версия)
-    //---------------------------------------------------------------------------------------
-    function initSliderCompact() {
-        var $slider = $('.js-slider-compact'),
-            rtime, //переменные для пересчета ресайза окна с задержкой delta
-            timeout = false,
-            delta = 200,
-            method = {};
-
-        method.getSliderSettings = function () {
-            var setting,
-                    settings1 = {
-                        maxSlides: 1,
-                        minSlides: 1,
-                        moveSlides: 1,
-                        slideWidth: 280,
-                    },
-                    settings2 = {
-                        maxSlides: 1,
-                        minSlides: 1,
-                        moveSlides: 1,
-                        slideWidth: 360,
-                    },
-                    settings3 = {
-                        maxSlides: 2,
-                        minSlides: 2,
-                        moveSlides: 2,
-                        slideWidth: 320,
-                    },
-                    settings4 = {
-                        maxSlides: 3,
-                        minSlides: 3,
-                        moveSlides: 3,
-                        slideWidth: 280,
-                    },
-                    common = {
-                        slideMargin: 20,
-                        auto: false,
-                        mode: 'horizontal',
-                        infiniteLoop: false,
-                        hideControlOnEnd: true,
-                        useCSS: false,
-                        nextText: '<i class="icomoon-arrow-right"></i>',
-                        prevText: '<i class="icomoon-arrow-left"></i>',
-                    },
-                    winW = $.viewportW();
-            if (winW < 450) {
-                setting = $.extend(settings1, common);
-            }
-            if (winW >= 450 && winW < 600) {
-                setting = $.extend(settings2, common);
-            }
-            if (winW >= 600 && winW < 1020) {
-                setting = $.extend(settings3, common);
-            }           
-            if (winW >= 1020) {
-                setting = $.extend(settings4, common);
-            }
-            return setting;
-        }
-
-        method.reloadSliderSettings = function () {
-            $slider.reloadSlider($.extend(method.getSliderSettings(), { startSlide: $slider.getCurrentSlide() }));
-        };
-
-
-        method.endResize = function () {
-            if (new Date() - rtime < delta) {
-                setTimeout(method.endResize, delta);
-            } else {
-                timeout = false;
-                //ресайз окончен - пересчитываем
-                method.reloadSliderSettings();
-            }
-        };
-
-        method.startResize = function () {
-            rtime = new Date();
-            if (timeout === false) {
-                timeout = true;
-                setTimeout(method.endResize, delta);
-            }
-        };
-
-        $slider.bxSlider(method.getSliderSettings());//запускаем слайдер
-
-        $(window).bind('resize', method.startResize);//пересчитываем кол-во видимых элементов при ресайзе окна с задержкой .2с
-    }
-
-    if ($('.js-slider-compact').length) { initSliderCompact() }
-
-
 
     //
     // Фиксируем фильтры при скролле
