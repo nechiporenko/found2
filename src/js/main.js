@@ -9,6 +9,7 @@
 // Кнопка скролла страницы
 // Стилизация Select
 // Модальное окно
+// Таймер обратного отсчета
 
 jQuery(document).ready(function ($) {
     $('body').append('<div id="overlay" class="overlay"></div>');//оверлей
@@ -422,7 +423,7 @@ jQuery(document).ready(function ($) {
         $overlay = $('#overlay'),
         $close;
 
-        $close = $('<a class="modal__close" href="#"><i class="icon-cancel"></i></a>'); //иконка закрыть
+        $close = $('<button type="button" class="modal__close"><i class="icomoon-close"></i></a>'); //иконка закрыть
 
 
         $close.on('click', function (e) {
@@ -469,5 +470,64 @@ jQuery(document).ready(function ($) {
 
         return method;
     }());
+
+    //
+    // Таймер обратного отсчета
+    //---------------------------------------------------------------------------------------
+    function initTimer() {
+        var $counter = $('.js-countdown'),
+            deadline = $counter.data('deadline'),
+            $days = $counter.find('.b-count__num--day'),
+            $hours = $counter.find('.b-count__num--hour'),
+            $minutes = $counter.find('.b-count__num--min'),
+            $seconds = $counter.find('.b-count__num--sec');
+
+        function getTimeRemaining(endtime) {
+            var t = Date.parse(endtime) - Date.parse(new Date()),
+                seconds = Math.floor((t / 1000) % 60),
+                minutes = Math.floor((t / 1000 / 60) % 60),
+                hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+                days = Math.floor(t / (1000 * 60 * 60 * 24));
+            if (days > 99) { days = 99 };
+            if (days < 10) { days = '0' + days };
+            if (seconds < 10) { seconds = '0' + seconds };
+            if (minutes < 10) { minutes = '0' + minutes };
+            if (hours < 10) { hours = '0' + hours };
+
+            return {
+                'total': t,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+            };
+        }
+
+        function initializeTimer(endtime) {
+            var timeinterval = setInterval(function () {
+                var t = getTimeRemaining(endtime);
+                if (t.total > 0) {
+                    $days.text(t.days);
+                    $hours.text(t.hours);
+                    $minutes.text(t.minutes);
+                    $seconds.text(t.seconds);
+                }
+
+
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                    var zero = '00';
+                    $days.text(zero);
+                    $hours.text(zero);
+                    $minutes.text(zero);
+                    $seconds.text(zero);
+                }
+            }, 1000);
+        }
+
+        initializeTimer(deadline);
+    }
+
+    if ($('.js-countdown').length) { initTimer(); }
 
 });

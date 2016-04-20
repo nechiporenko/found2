@@ -61,7 +61,7 @@ html{
 /* Typography*/
 h1, h2, h3, h4, h5, h6, .g-title, .g-subtitle{
   margin-top: 0;
-  margin-bottom: 1.4*$project-line-height;
+  margin-bottom: $project-line-height;
   line-height:strip-units($project-line-height/16);
   color:$title-color;
   font-family:$font-title;
@@ -69,12 +69,20 @@ h1, h2, h3, h4, h5, h6, .g-title, .g-subtitle{
 }
 .g-title{
     display:block;
-    @include font-size(2*$project-font-size);
+    font-size:rem(26px);
+
+    @include media($desktop){
+        @include font-size(32px);
+    }
 }
 
 .g-subtitle{
     display:block;
-    @include font-size(24px);
+    font-size:rem(24px);
+
+    @include media($desktop){
+        @include font-size(28px);
+    }
 }
 
 .g-brand-color{

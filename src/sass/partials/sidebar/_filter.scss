@@ -102,7 +102,7 @@
 /*Subscribe form*/
 .f-subscribe{
     padding:10px;
-    margin-bottom:32px;
+    margin-bottom:$project-line-height;
     border:2px solid #000;
     box-sizing:border-box;
     background:#fefbc0;
@@ -135,11 +135,11 @@
     text-align:center;
     text-transform:uppercase;
     background:#fff100;
-    @extend .g-shadow-hover;
 
+    &:hover,
     &:active,
     &:focus{
-        background:darken(#fff100, 5%);
+        box-shadow:inset 2px 2px 30px rgba(#000, .1), 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         outline:0;
     }
 }

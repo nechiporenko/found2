@@ -5,25 +5,31 @@
     vertical-align:middle;
     margin-bottom:$project-line-height;
     height:2*$project-line-height;
-    line-height:2*$project-line-height;
-    padding:0 30px;
+    line-height:2*$project-line-height - 4;
+    padding:0 15px;
     color:#fff;
     text-align: center;
-    @include font-size($project-font-size);
+    font-size:rem(16px);
+    font-weight:600;
     text-decoration: none;
+    text-overflow:ellipsis;
     white-space: nowrap;
     background: $primary;
     border-radius:$border-radius;
-    border: none;
+    border: 2px solid #000;
     cursor: pointer;
     box-sizing: border-box;
     outline:0;
+
+    @include media($large){
+        @include font-size($project-font-size);
+    }
 
     &:hover,
     &:focus,
     &:active{
         color:#fff;
-        box-shadow:inset 2px 2px 30px darken($primary, 20%);
+        box-shadow:inset 2px 2px 30px rgba(#000, .1), 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     &:active{
@@ -34,6 +40,11 @@
         background:grey;
         box-shadow:none;
     }
+}
+
+.g-btn--alt{
+    background:$primary-alt;
+    color:$title-color !important;
 }
 
 .g-clearbutton{

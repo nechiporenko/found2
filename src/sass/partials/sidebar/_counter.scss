@@ -1,0 +1,60 @@
+﻿@import "../../modules/_base.scss";
+/*Counter*/
+.b-count{
+    max-width:300px;
+    margin:0 auto;
+}
+.b-count__title{
+    display:block;
+    margin-bottom:$project-line-height;
+    @include font-size(22px);
+    font-weight:600;
+    text-align:center;
+}
+.b-count__list{
+    list-style-type:none;
+    padding:0;
+    margin:0 -5px $project-line-height;
+    font-size:0;
+}
+
+.b-count__item{
+    display:inline-block;
+    width:25%;
+    padding:0 5px;
+    box-sizing:border-box;
+    line-height:1;
+    text-align:center;
+}
+.b-count__inner{
+    height:58px;
+    margin-bottom:5px;
+    background:$primary-alt;
+    line-height:58px;
+    white-space:nowrap;
+    position:relative;
+    @include font-size(42px);
+    z-index:1;
+
+    &:before{
+        content:'';
+        display:block;
+        height:2px;
+        position:absolute;
+        left:0; top:50%;
+        margin-top:-1px;
+        width:100%;
+        background:#fff;
+        z-index:-1;
+    }
+}
+.b-count__num{
+    display:block;
+    font-weight:600;
+    @include px2rem(letter-spacing, -1.2px);
+    color:$title-color;
+}
+.b-count__name{
+    @include font-size(14px);
+    font-weight:600;
+}

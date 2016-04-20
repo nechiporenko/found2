@@ -18,9 +18,16 @@
     background:#f2f2f2;
 }
 
-.page__section--article{
+.page__section--article{//если нужны выделения желтоым в тексте
     b, strong{
         @extend .g-bright-text;
+    }
+}
+
+.page__section--object{//для информации об объектах - шрифт 16px
+    @include media($desktop){
+        @include font-size(16px);
+        line-height:1.5;
     }
 }
 
@@ -68,20 +75,20 @@
 
 .page__grid--2col{//сперва покажем сайдбар (фильтр), затем осн.контент
     @include media($tablet){
-        .page__col--left{
+        & > .page__col--left{
             width:(100%/3);
         }
 
-        .page__col--main{
+        & > .page__col--main{
             width:2*(100%/3);
         }
     }
     @include media($desktop){
-        .page__col--left{
+        & > .page__col--left{
             width:(100%/4);
         }
 
-        .page__col--main{
+        & > .page__col--main{
             width:3*(100%/4);
         }
     }
@@ -93,17 +100,30 @@
     @extend .page__grid--2col;
 
     @include media($tablet){
-        .page__col--left{
+        & > .page__col--left{
             padding-top:30px;
         }
-        .page__col--main{
+        & > .page__col--main{
             float:right;
         }
     }
 }
 
 
-/*Table (short object description)*/
+.page__grid--inner{//в карточке объекта
+    @include media($desktop){
+        & > .page__col--main{
+            width:2*(100%)/3;
+        }
+        & > .page__col--right,
+        & > .page__col--left{
+            width:(100%)/3;
+        }
+    }
+}
+
+
+/*Table (object description)*/
 .page__table{
     @extend .g-table;
     border:2px solid $border-color;
@@ -113,6 +133,7 @@
 
     @include media($desktop){
         @include font-size(15px);
+        @include px2rem(letter-spacing, -.8px);
     }
 
     tbody tr:nth-child(odd){

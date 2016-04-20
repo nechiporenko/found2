@@ -19,7 +19,7 @@ textarea {
     display:inline-block;
     vertical-align:middle;
     width:100%;
-    margin-bottom: $project-line-height;
+    margin-bottom: $project-line-height/2;
     padding:6px 15px;
     background-color: #fff;
     border: 1px solid $border-color;
@@ -65,13 +65,14 @@ textarea {
 }
 
 .g-textarea{
-    min-height:5*$project-line-height;
+    min-height:3*$project-line-height;
 }
 
 .g-label{
     display: block;
-    margin-bottom:$project-line-height/3;
-    font-weight: bold;
+    margin-bottom:5px;
+    @include font-size(15px);
+    font-weight: 600;
 
     &.error{
         color:red;
