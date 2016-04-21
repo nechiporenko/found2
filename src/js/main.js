@@ -93,6 +93,7 @@ jQuery(document).ready(function ($) {
     function initHeaderSlider() {
         var slider = $('.js-headerslider'),
             $outer = $('.b-header'),
+            isDesktop=false, //флаг: десктоп - не десктоп
             rtime, //переменные для пересчета ресайза окна с задержкой delta
             timeout = false,
             delta = 200,
@@ -108,6 +109,15 @@ jQuery(document).ready(function ($) {
                 pause: 8000
             });
         };
+
+        method.checkViewport = function () {
+            var winW = $.viewportW();
+            if (winW >= 1200) {
+                isDesktop = true;
+            } else {
+                isDesktop = false;
+            };
+        };
         
         method.setMaxHeight = function () {
             if (winH > 1020) {
@@ -117,11 +127,18 @@ jQuery(document).ready(function ($) {
         };
 
         method.checkResize = function () {//без этого метода на мобильных будет происходить дергание контента при скролле (когда прячется - показывается тулбар браузера)
-            var newWinH = $.viewportH();
+            var newWinH = $.viewportH(),//высота окна
+                oldFlag = isDesktop;
 
-            if (Math.abs((newWinH - winH) / winH) > .15) {//отслеживаем изменение разрешения более чем на 15% по высоте
-                winH = newWinH;
-                method.setMaxHeight();
+            method.checkViewport();
+
+            if (isDesktop) {
+                $outer.removeAttr('style', 'height');
+            } else {//маленький экран
+                if (Math.abs((newWinH - winH) / winH) > .15) {//отслеживаем изменение разрешения более чем на 15% по высоте на маленьких экранах
+                    winH = newWinH;
+                    method.setMaxHeight();
+                };
             };
         };
 
@@ -143,11 +160,17 @@ jQuery(document).ready(function ($) {
             }
         };
 
-        method.setMaxHeight();
-        method.initSlider();
-        $(window).bind('resize', method.startResize);
 
-        $('.b-header__slider').find('.bx-pager-item').hover(function () {//поставим слайдер на паузу при наведении на пейджер
+        method.checkViewport();//узнали размер окна
+        if (!isDesktop) {//если маленький экран
+            method.setMaxHeight();//то установили макс.размер для слайдера
+        };
+        method.initSlider();//запустили слайдер
+
+
+        $(window).bind('resize', method.startResize); //следим за ресайзом окна
+
+        $('.b-header__slider').find('.bx-pager-item').hover(function () {//будем ставить слайдер на паузу при наведении на пейджер
             slider.stopAuto();
         }, function () {
             slider.startAuto();
