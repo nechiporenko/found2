@@ -10,6 +10,7 @@
 // Стилизация Select
 // Модальное окно
 // Таймер обратного отсчета
+// Галерея (Лайтбокс)
 
 jQuery(document).ready(function ($) {
     $('body').append('<div id="overlay" class="overlay"></div>');//оверлей
@@ -552,5 +553,23 @@ jQuery(document).ready(function ($) {
     }
 
     if ($('.js-countdown').length) { initTimer(); }
+
+    //
+    // Галерея (Лайтбокс)
+    //---------------------------------------------------------------------------------------
+    function initGallery() {
+        $('.js-gallery').find('a').simpleLightbox({
+            navText: ['<i class="icomoon-arrow-left"></i>', '<i class="icomoon-arrow-right"></i>'],
+            captions: true,
+            captionSelector: 'self',
+            captionType: 'data',
+            captionsData: 'caption',
+            close: true,
+            closeText: '<i class="icomoon-close"></i>',
+            showCounter: true,
+            disableScroll: false
+        });
+    };
+    if ($('.js-gallery').length) { initGallery(); }
 
 });
