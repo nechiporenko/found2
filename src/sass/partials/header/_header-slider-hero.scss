@@ -76,10 +76,12 @@
 
 @include media($desktop){
     .h-hero{
-        @include font-size(24px);
-        p{
-            margin-bottom:45px;
-        }
+        //@include font-size(24px);
+        @include font-size(30px);
+    }
+    p{
+        margin-bottom:35px;
+        letter-spacing:rem(.8px);
     }
     .h-hero__title{
         @include font-size(56px);
