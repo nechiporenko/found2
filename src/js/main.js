@@ -124,6 +124,10 @@ jQuery(document).ready(function ($) {
             if (winH > 1020) {
                 winH = 1020;
             };
+
+            if (winH < 320) {
+                winH = 320;
+            };
             $outer.css('height', winH + 'px');
         };
 
