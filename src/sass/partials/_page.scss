@@ -37,7 +37,8 @@
     width:90%;
     max-width:768px;
     margin:0 auto 30px;
-    font-size:rem(20px);
+    //font-size:rem(20px);
+    font-size:rem(18px);
     font-weight:600;
     text-align:center;
     color:$title-color;
@@ -45,7 +46,8 @@
     line-height:1.3;
 
     @include media($tablet){
-        @include font-size(24px);
+        //@include font-size(24px);
+        @include font-size(22px);
     }
 }
 
@@ -125,10 +127,9 @@
 
 /*Table (object description)*/
 .page__table{
-    @extend .g-table;
+    @extend .g-full-width;
     border:2px solid $border-color;
     font-size:rem(12px);
-    font-weight:600;
     color:$title-color;
 
     @include media($desktop){
@@ -136,8 +137,18 @@
         @include px2rem(letter-spacing, -.8px);
     }
 
+    th,
+    td {
+        padding:6px 10px;
+        border-bottom: 1px solid $border-color; 
+    }
+
     tbody tr:nth-child(odd){
         background:#ebebeb;
+    }
+
+    tbody tr td:first-child{
+        font-weight:600;
     }
 }
 

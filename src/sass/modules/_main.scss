@@ -69,19 +69,23 @@ h1, h2, h3, h4, h5, h6, .g-title, .g-subtitle{
 }
 .g-title{
     display:block;
-    font-size:rem(26px);
+    //font-size:rem(26px);
+    font-size:rem(24px);
 
     @include media($desktop){
-        @include font-size(32px);
+        //@include font-size(32px);
+        @include font-size(30px);
     }
 }
 
 .g-subtitle{
     display:block;
-    font-size:rem(24px);
+    //font-size:rem(24px);
+    font-size:rem(22px);
 
     @include media($desktop){
-        @include font-size(28px);
+        //@include font-size(28px);
+        @include font-size(26px);
     }
 }
 

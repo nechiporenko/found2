@@ -60,11 +60,13 @@ img.g-full-width{clear:both;display:block;width:100%;height:auto;margin:0 0 0 0;
     font-size:rem(14px);
 
     @include media($tablet){
-        font-size:rem(16px);
+        //font-size:rem(16px);
+        font-size:rem(15px);
     }
 
     @include media($desktop){
-        font-size:rem(18px);
+        //font-size:rem(18px);
+        @include font-size(17px);
     }
 }
 

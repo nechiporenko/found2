@@ -70,6 +70,7 @@
 
 .slider__thumb{
     position:relative;
+    background:#ebebeb;
 
     &:after{
         content:'';
@@ -115,7 +116,8 @@
     }
 
     @include media($large){
-        @include font-size(24px);
+        //@include font-size(24px);
+         @include font-size(22px);
     }
 }
 
