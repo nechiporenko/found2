@@ -85,15 +85,14 @@
     @include transition(opacity .3s ease);
     @include backface-visibility(hidden);
     z-index:1;
+}
 
-    &.resized{//при необходимости, будем скриптом подгонять  в размер
-        top:0; right:0; bottom:0; left:0;
-        right:auto; bottom:auto;
-        max-width:none;
-        max-height:none;
-        margin:0;
-        @extend .g-valign;
-    }
+.csstransforms .slider__img.resized{
+    right:auto; bottom:auto;
+    max-width:none;
+    max-height:none;
+    margin:0;
+    @extend .g-align;
 }
 
 .slider__caption{

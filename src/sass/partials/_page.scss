@@ -27,7 +27,7 @@
 .page__section--object{//для информации об объектах - шрифт 16px
     @include media($desktop){
         @include font-size(16px);
-        line-height:1.5;
+        line-height:1.4;
     }
 }
 
@@ -87,6 +87,7 @@
 
             .page-title__inner{
                 max-width:50%;
+                text-align:center;
             }
         }
     }

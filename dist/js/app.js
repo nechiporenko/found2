@@ -348,6 +348,7 @@ jQuery(document).ready(function ($) {
                 timeout = false;
                 //ресайз окончен - пересчитываем
                 method.reloadSliderSettings();
+                method.resizeImages();
             }
         };
 
@@ -359,24 +360,29 @@ jQuery(document).ready(function ($) {
             }
         };
 
-        //method.resizeImages = function () {
-        //    var $thumb = $slider.find('.slider__thumb').eq(0),
-        //        thumbW = $thumb.outerWidth(),
-        //        thumbH = $thumb.outerHeight();
+        method.resizeImages = function () {//нужно чтобы картинка пропорционально заполнила контейнер
+            var $thumb = $slider.find('.slider__thumb').eq(0),
+                thumbW = $thumb.outerWidth(),
+                thumbH = $thumb.outerHeight();
 
-        //    $slider.find('.slider__img').each(function () {
-        //        var $el = $(this),
-        //            elW = $el.outerWidth(),
-        //            elH = $el.outerHeight(),
-        //            ratio = elW / elH;
-        //        if (elW < thumbW) {
-
-        //        }
-        //    });
-        //};
+            $slider.find('.slider__img').each(function () {
+                var $el = $(this),
+                    elW = $el.outerWidth(),
+                    elH = $el.outerHeight(),
+                    ratio = elW / elH;
+                if (elW < thumbW) {//сперва проверим ширину
+                    $el.css('width', Math.floor(thumbW) + 'px').addClass('resized');//height:auto
+                    elH = $el.outerHeight();//снова замерим
+                };
+                if (elH < thumbH) {
+                    $el.css('height', Math.floor(thumbH) + 'px').addClass('resized');
+                    $el.css('width', Math.floor(thumbH * ratio) + 'px');
+                };
+            });
+        };
 
         $slider.bxSlider(method.getSliderSettings());//запускаем слайдер
-
+        method.resizeImages(); //подгоняем картинки в размер контейнера
         $(window).bind('resize', method.startResize);//пересчитываем кол-во видимых элементов при ресайзе окна с задержкой .2с
     }
 
