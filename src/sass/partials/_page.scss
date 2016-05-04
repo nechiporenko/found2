@@ -43,7 +43,9 @@
     text-align:center;
     color:$title-color;
     border-bottom:3px solid $title-color;
+    box-sizing:border-box;
     line-height:1.3;
+    @include transition(max-width .3s linear); //для эффекта при фиксации во время скролла
 
     @include media($tablet){
         //@include font-size(24px);
@@ -62,6 +64,31 @@
 
     @include media($desktop){
         padding:5px 70px;
+    }
+}
+
+.page-title__wrapper{//оболочка, когда нужно зафиксировать тайтл при скролле
+    width:100%;
+    z-index:500;
+
+    @include media($tablet){
+        &.fixed{
+            position:fixed;
+            left:0; top:0;
+
+            .page-title{
+                width:100%;
+                max-width:1200px;
+                padding:0 10px;
+                border:none;
+                text-align:right;
+                @include backface-visibility(hidden);
+            }
+
+            .page-title__inner{
+                max-width:50%;
+            }
+        }
     }
 }
 

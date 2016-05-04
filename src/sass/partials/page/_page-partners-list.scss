@@ -33,3 +33,12 @@
         @include font-size(18px);
     }
 }
+
+.b-partner__link{
+    text-decoration:none;
+
+    &:hover,
+    &:active{
+        text-decoration:underline;
+    }
+}

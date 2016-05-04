@@ -603,7 +603,7 @@ img.g-full-width, img.g-table, img.page__table, img.b-object__table {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
-.g-valign, .slider__title, .b-object__title {
+.g-valign, .slider__img.resized, .resized.b-object__img, .slider__title, .b-object__title {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -1421,7 +1421,11 @@ input[type="checkbox"], input[type="radio"] {
   text-align: center;
   color: #000;
   border-bottom: 3px solid #000;
-  line-height: 1.3; }
+  box-sizing: border-box;
+  line-height: 1.3;
+  -webkit-transition: max-width .3s linear;
+  -moz-transition: max-width .3s linear;
+  transition: max-width .3s linear; }
   @media screen and (min-width: 768px)  {
     .page-title {
       font-size: 22px;
@@ -1437,6 +1441,25 @@ input[type="checkbox"], input[type="radio"] {
   @media screen and (min-width: 992px)  {
     .page-title__inner {
       padding: 5px 70px; } }
+
+.page-title__wrapper {
+  width: 100%;
+  z-index: 500; }
+  @media screen and (min-width: 768px)  {
+    .page-title__wrapper.fixed {
+      position: fixed;
+      left: 0;
+      top: 0; }
+      .page-title__wrapper.fixed .page-title {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 10px;
+        border: none;
+        text-align: right;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden; }
+      .page-title__wrapper.fixed .page-title__inner {
+        max-width: 50%; } }
 
 /*Page Grid*/
 @media screen and (min-width: 768px)  {
@@ -1580,7 +1603,8 @@ input[type="checkbox"], input[type="radio"] {
 
 .slider__thumb, .b-object__thumb {
   position: relative;
-  background: #ebebeb; }
+  background: #ebebeb;
+  overflow: hidden; }
   .slider__thumb:after, .b-object__thumb:after {
     content: '';
     display: block;
@@ -1593,6 +1617,16 @@ input[type="checkbox"], input[type="radio"] {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   z-index: 1; }
+  .slider__img.resized, .resized.b-object__img {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0; }
 
 .slider__caption, .b-object__caption {
   position: absolute;
@@ -1755,6 +1789,11 @@ input[type="checkbox"], input[type="radio"] {
     .b-partner__title {
       font-size: 18px;
       font-size: 1.125rem; } }
+
+.b-partner__link {
+  text-decoration: none; }
+  .b-partner__link:hover, .b-partner__link:active {
+    text-decoration: underline; }
 
 /*Sale Steps section*/
 .steps__inner {

@@ -284,6 +284,22 @@ jQuery(document).ready(function ($) {
             }
         };
 
+        //method.resizeImages = function () {
+        //    var $thumb = $slider.find('.slider__thumb').eq(0),
+        //        thumbW = $thumb.outerWidth(),
+        //        thumbH = $thumb.outerHeight();
+
+        //    $slider.find('.slider__img').each(function () {
+        //        var $el = $(this),
+        //            elW = $el.outerWidth(),
+        //            elH = $el.outerHeight(),
+        //            ratio = elW / elH;
+        //        if (elW < thumbW) {
+
+        //        }
+        //    });
+        //};
+
         $slider.bxSlider(method.getSliderSettings());//запускаем слайдер
 
         $(window).bind('resize', method.startResize);//пересчитываем кол-во видимых элементов при ресайзе окна с задержкой .2с
@@ -298,15 +314,23 @@ jQuery(document).ready(function ($) {
         var stick_breakpoint = 768, //на меньших экранах - будем отключать
             flag = false, //статус - фиксировано или нет
             $filter = $('.js-sticky'),
+            $title=$('.js-sticky-title'),
             rtime, //переменные для пересчета ресайза окна с задержкой delta
             timeout = false,
             delta = 200,
             method = {};
 
         method.stick = function () {
-            $filter.stick_in_parent({//фиксируем
+            $filter.stick_in_parent({//фиксируем фильтр
                 parent: $('.js-sticky').parents('.page__grid'),
-            });
+            })
+            .on("sticky_kit:stick", function () {//фиксируем заголовок
+                $title.addClass('fixed');
+            })
+          .on("sticky_kit:unstick", function () {//возвращаем заголовок на место
+              $title.removeClass('fixed');
+          });
+            
             flag = true;
         };
 
