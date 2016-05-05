@@ -721,6 +721,12 @@ img.g-full-width, img.g-table, img.page__table, img.b-object__table {
   box-sizing: border-box;
   outline: 0; }
 
+.g-btn--long {
+  padding: 12px 15px;
+  white-space: normal;
+  height: auto;
+  line-height: 1.2; }
+
 /* Forms */
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"], textarea {
