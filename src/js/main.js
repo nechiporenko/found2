@@ -329,13 +329,9 @@ jQuery(document).ready(function ($) {
         method.stick = function () {
             $filter.stick_in_parent({//фиксируем фильтр
                 parent: $('.js-sticky').parents('.page__grid'),
-            })
-            .on("sticky_kit:stick", function () {//фиксируем заголовок
-                $title.addClass('fixed');
-            })
-          .on("sticky_kit:unstick", function () {//возвращаем заголовок на место
-              $title.removeClass('fixed');
-          });
+                offset_top: $title.outerHeight(),
+                recalc_every:1
+            });
             
             flag = true;
         };
@@ -381,6 +377,12 @@ jQuery(document).ready(function ($) {
 
         method.checkout();//проверили на старте
         $(window).bind('resize', method.startResize);//проверяем, нужно ли фиксировать при ресайзе окна
+
+        if ($title.length) {
+            var stickyHeader = new Waypoint.Sticky({//отдельно фиксируем хидер
+                element: $('.js-sticky-title')[0]
+            });
+        };
     };
     if ($('.js-sticky').length) { stickyFilter(); }
 

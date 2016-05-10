@@ -5,7 +5,8 @@
 
     p{
         @include font-size(15px);
-        line-height:2;
+        //line-height:2;
+        line-height:1.4;
         @include px2rem(letter-spacing, -.5px);
 
         @include media($large){

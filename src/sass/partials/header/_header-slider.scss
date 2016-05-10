@@ -31,19 +31,11 @@
     background-size:cover;
     z-index:51;//50 - z-index в слайдере для .h-slider__item
 
-    &:before,
     &:after{
         content:'';
         position:absolute;
         top:0; left:0; right:0; bottom:0;
-    }
-
-    &:before{
-        background:rgba($primary, .3);
-    }
-
-    &:after{
-        background:rgba(#000, .3);
+        background:rgba(#000, .45);
     }
 }
 

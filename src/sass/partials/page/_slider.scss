@@ -5,7 +5,7 @@
 	    margin-bottom:30px;
         .bx-pager,
 	    .bx-controls-auto {
-            bottom: -30px;
+            bottom: -25px;
 	    }
         .bx-pager{
             &.bx-default-pager a{
@@ -117,17 +117,18 @@
     overflow:hidden;
 
     @include media($tablet){
-        font-size:rem(18px);
+        font-size:rem(16px);
     }
 
     @include media($desktop){
-        @include font-size(20px);
+        //@include font-size(20px);
+        @include font-size(18px);
     }
 
-    @include media($large){
+    //@include media($large){
         //@include font-size(24px);
-         @include font-size(22px);
-    }
+         //@include font-size(22px);
+    //}
 }
 
 .slider__popup{
