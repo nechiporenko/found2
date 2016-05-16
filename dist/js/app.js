@@ -88,6 +88,12 @@ https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
 */
 !function () { "use strict"; function t(s) { this.options = e.extend({}, i.defaults, t.defaults, s), this.element = this.options.element, this.$element = e(this.element), this.createWrapper(), this.createWaypoint() } var e = window.jQuery, i = window.Waypoint; t.prototype.createWaypoint = function () { var t = this.options.handler; this.waypoint = new i(e.extend({}, this.options, { element: this.wrapper, handler: e.proxy(function (e) { var i = this.options.direction.indexOf(e) > -1, s = i ? this.$element.outerHeight(!0) : ""; this.$wrapper.height(s), this.$element.toggleClass(this.options.stuckClass, i), t && t.call(this, e) }, this) })) }, t.prototype.createWrapper = function () { this.options.wrapper && this.$element.wrap(this.options.wrapper), this.$wrapper = this.$element.parent(), this.wrapper = this.$wrapper[0] }, t.prototype.destroy = function () { this.$element.parent()[0] === this.wrapper && (this.waypoint.destroy(), this.$element.removeClass(this.options.stuckClass), this.options.wrapper && this.$element.unwrap()) }, t.defaults = { wrapper: '<div class="sticky-wrapper" />', stuckClass: "stuck", direction: "down right" }, i.Sticky = t }();
 
+/*
+ * The Final Countdown for jQuery v2.1.0 (http://hilios.github.io/jQuery.countdown/)
+ * Copyright (c) 2015 Edson Hilios
+ */
+!function (a) { "use strict"; "function" == typeof define && define.amd ? define(["jquery"], a) : a(jQuery) }(function (a) { "use strict"; function b(a) { if (a instanceof Date) return a; if (String(a).match(g)) return String(a).match(/^[0-9]*$/) && (a = Number(a)), String(a).match(/\-/) && (a = String(a).replace(/\-/g, "/")), new Date(a); throw new Error("Couldn't cast `" + a + "` to a date object.") } function c(a) { var b = a.toString().replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1"); return new RegExp(b) } function d(a) { return function (b) { var d = b.match(/%(-|!)?[A-Z]{1}(:[^;]+;)?/gi); if (d) for (var f = 0, g = d.length; g > f; ++f) { var h = d[f].match(/%(-|!)?([a-zA-Z]{1})(:[^;]+;)?/), j = c(h[0]), k = h[1] || "", l = h[3] || "", m = null; h = h[2], i.hasOwnProperty(h) && (m = i[h], m = Number(a[m])), null !== m && ("!" === k && (m = e(l, m)), "" === k && 10 > m && (m = "0" + m.toString()), b = b.replace(j, m.toString())) } return b = b.replace(/%%/, "%") } } function e(a, b) { var c = "s", d = ""; return a && (a = a.replace(/(:|;|\s)/gi, "").split(/\,/), 1 === a.length ? c = a[0] : (d = a[0], c = a[1])), 1 === Math.abs(b) ? d : c } var f = [], g = [], h = { precision: 100, elapse: !1 }; g.push(/^[0-9]*$/.source), g.push(/([0-9]{1,2}\/){2}[0-9]{4}( [0-9]{1,2}(:[0-9]{2}){2})?/.source), g.push(/[0-9]{4}([\/\-][0-9]{1,2}){2}( [0-9]{1,2}(:[0-9]{2}){2})?/.source), g = new RegExp(g.join("|")); var i = { Y: "years", m: "months", n: "daysToMonth", w: "weeks", d: "daysToWeek", D: "totalDays", H: "hours", M: "minutes", S: "seconds" }, j = function (b, c, d) { this.el = b, this.$el = a(b), this.interval = null, this.offset = {}, this.options = a.extend({}, h), this.instanceNumber = f.length, f.push(this), this.$el.data("countdown-instance", this.instanceNumber), d && ("function" == typeof d ? (this.$el.on("update.countdown", d), this.$el.on("stoped.countdown", d), this.$el.on("finish.countdown", d)) : this.options = a.extend({}, h, d)), this.setFinalDate(c), this.start() }; a.extend(j.prototype, { start: function () { null !== this.interval && clearInterval(this.interval); var a = this; this.update(), this.interval = setInterval(function () { a.update.call(a) }, this.options.precision) }, stop: function () { clearInterval(this.interval), this.interval = null, this.dispatchEvent("stoped") }, toggle: function () { this.interval ? this.stop() : this.start() }, pause: function () { this.stop() }, resume: function () { this.start() }, remove: function () { this.stop.call(this), f[this.instanceNumber] = null, delete this.$el.data().countdownInstance }, setFinalDate: function (a) { this.finalDate = b(a) }, update: function () { if (0 === this.$el.closest("html").length) return void this.remove(); var b, c = void 0 !== a._data(this.el, "events"), d = new Date; b = this.finalDate.getTime() - d.getTime(), b = Math.ceil(b / 1e3), b = !this.options.elapse && 0 > b ? 0 : Math.abs(b), this.totalSecsLeft !== b && c && (this.totalSecsLeft = b, this.elapsed = d >= this.finalDate, this.offset = { seconds: this.totalSecsLeft % 60, minutes: Math.floor(this.totalSecsLeft / 60) % 60, hours: Math.floor(this.totalSecsLeft / 60 / 60) % 24, days: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7, daysToWeek: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7, daysToMonth: Math.floor(this.totalSecsLeft / 60 / 60 / 24 % 30.4368), totalDays: Math.floor(this.totalSecsLeft / 60 / 60 / 24), weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7), months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30.4368), years: Math.abs(this.finalDate.getFullYear() - d.getFullYear()) }, this.options.elapse || 0 !== this.totalSecsLeft ? this.dispatchEvent("update") : (this.stop(), this.dispatchEvent("finish"))) }, dispatchEvent: function (b) { var c = a.Event(b + ".countdown"); c.finalDate = this.finalDate, c.elapsed = this.elapsed, c.offset = a.extend({}, this.offset), c.strftime = d(this.offset), this.$el.trigger(c) } }), a.fn.countdown = function () { var b = Array.prototype.slice.call(arguments, 0); return this.each(function () { var c = a(this).data("countdown-instance"); if (void 0 !== c) { var d = f[c], e = b[0]; j.prototype.hasOwnProperty(e) ? d[e].apply(d, b.slice(1)) : null === String(e).match(/^[$A-Z_][0-9A-Z_$]*$/i) ? (d.setFinalDate.call(d, e), d.start()) : a.error("Method %s does not exist on jQuery.countdown".replace(/\%s/gi, e)) } else new j(this, b[0], b[1]) }) } });
+
 // Application Scripts:
 
 // Мобильное меню
@@ -300,22 +306,24 @@ jQuery(document).ready(function ($) {
             var setting,
                     settings1 = {
                         maxSlides: 1,
-                        minSlides: 1,
-                        moveSlides: 1,
+                        //minSlides: 1,
+                        //moveSlides: 1,
                     },
                     settings2 = {
                         maxSlides: 2,
-                        minSlides: 2,
-                        moveSlides: 2,
+                        //minSlides: 2,
+                        //moveSlides: 2,
                     },
                     settings3 = {
                         maxSlides: 3,
-                        minSlides: 3,
-                        moveSlides: 3,
+                        //minSlides: 3,
+                        //moveSlides: 3,
                     },
                     common = {
                         slideWidth: 380,
                         slideMargin: 20,
+                        minSlides: 1,
+                        moveSlides: 1,
                         auto: false,
                         mode: 'horizontal',
                         infiniteLoop: false,
@@ -624,7 +632,7 @@ jQuery(document).ready(function ($) {
     //
     // Таймер обратного отсчета
     //---------------------------------------------------------------------------------------
-    function initTimer() {
+    function initCountDown() {
         var $counter = $('.js-countdown'),
             deadline = $counter.data('deadline'),
             $days = $counter.find('.b-count__num--day'),
@@ -632,53 +640,21 @@ jQuery(document).ready(function ($) {
             $minutes = $counter.find('.b-count__num--min'),
             $seconds = $counter.find('.b-count__num--sec');
 
-        function getTimeRemaining(endtime) {
-            var t = Date.parse(endtime) - Date.parse(new Date()),
-                seconds = Math.floor((t / 1000) % 60),
-                minutes = Math.floor((t / 1000 / 60) % 60),
-                hours = Math.floor((t / (1000 * 60 * 60)) % 24),
-                days = Math.floor(t / (1000 * 60 * 60 * 24));
-            if (days > 99) { days = 99 };
-            if (days < 10) { days = '0' + days };
-            if (seconds < 10) { seconds = '0' + seconds };
-            if (minutes < 10) { minutes = '0' + minutes };
-            if (hours < 10) { hours = '0' + hours };
-
-            return {
-                'total': t,
-                'days': days,
-                'hours': hours,
-                'minutes': minutes,
-                'seconds': seconds
+        $counter.countdown(deadline, function (event) {//подключаем плагин
+            var days = Math.floor(event.strftime('%D'));
+            if (days > 99) { //будем показывать не более 99 дней
+                days = 99;
+            } else if (days < 10) {
+                days = '0' + days;
             };
-        }
+            $days.text(days);
+            $hours.text(event.strftime('%H'));
+            $minutes.text(event.strftime('%M'));
+            $seconds.text(event.strftime('%S'));
+        });
+    };
+    if ($('.js-countdown').length) { initCountDown(); };
 
-        function initializeTimer(endtime) {
-            var timeinterval = setInterval(function () {
-                var t = getTimeRemaining(endtime);
-                if (t.total > 0) {
-                    $days.text(t.days);
-                    $hours.text(t.hours);
-                    $minutes.text(t.minutes);
-                    $seconds.text(t.seconds);
-                }
-
-
-                if (t.total <= 0) {
-                    clearInterval(timeinterval);
-                    var zero = '00';
-                    $days.text(zero);
-                    $hours.text(zero);
-                    $minutes.text(zero);
-                    $seconds.text(zero);
-                }
-            }, 1000);
-        }
-
-        initializeTimer(deadline);
-    }
-
-    if ($('.js-countdown').length) { initTimer(); }
 
     //
     // Галерея (Лайтбокс)

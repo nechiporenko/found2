@@ -210,22 +210,24 @@ jQuery(document).ready(function ($) {
             var setting,
                     settings1 = {
                         maxSlides: 1,
-                        minSlides: 1,
-                        moveSlides: 1,
+                        //minSlides: 1,
+                        //moveSlides: 1,
                     },
                     settings2 = {
                         maxSlides: 2,
-                        minSlides: 2,
-                        moveSlides: 2,
+                        //minSlides: 2,
+                        //moveSlides: 2,
                     },
                     settings3 = {
                         maxSlides: 3,
-                        minSlides: 3,
-                        moveSlides: 3,
+                        //minSlides: 3,
+                        //moveSlides: 3,
                     },
                     common = {
                         slideWidth: 380,
                         slideMargin: 20,
+                        minSlides: 1,
+                        moveSlides: 1,
                         auto: false,
                         mode: 'horizontal',
                         infiniteLoop: false,
@@ -534,7 +536,7 @@ jQuery(document).ready(function ($) {
     //
     // Таймер обратного отсчета
     //---------------------------------------------------------------------------------------
-    function initTimer() {
+    function initCountDown() {
         var $counter = $('.js-countdown'),
             deadline = $counter.data('deadline'),
             $days = $counter.find('.b-count__num--day'),
@@ -542,53 +544,21 @@ jQuery(document).ready(function ($) {
             $minutes = $counter.find('.b-count__num--min'),
             $seconds = $counter.find('.b-count__num--sec');
 
-        function getTimeRemaining(endtime) {
-            var t = Date.parse(endtime) - Date.parse(new Date()),
-                seconds = Math.floor((t / 1000) % 60),
-                minutes = Math.floor((t / 1000 / 60) % 60),
-                hours = Math.floor((t / (1000 * 60 * 60)) % 24),
-                days = Math.floor(t / (1000 * 60 * 60 * 24));
-            if (days > 99) { days = 99 };
-            if (days < 10) { days = '0' + days };
-            if (seconds < 10) { seconds = '0' + seconds };
-            if (minutes < 10) { minutes = '0' + minutes };
-            if (hours < 10) { hours = '0' + hours };
-
-            return {
-                'total': t,
-                'days': days,
-                'hours': hours,
-                'minutes': minutes,
-                'seconds': seconds
+        $counter.countdown(deadline, function (event) {//подключаем плагин
+            var days = Math.floor(event.strftime('%D'));
+            if (days > 99) { //будем показывать не более 99 дней
+                days = 99;
+            } else if (days < 10) {
+                days = '0' + days;
             };
-        }
+            $days.text(days);
+            $hours.text(event.strftime('%H'));
+            $minutes.text(event.strftime('%M'));
+            $seconds.text(event.strftime('%S'));
+        });
+    };
+    if ($('.js-countdown').length) { initCountDown(); };
 
-        function initializeTimer(endtime) {
-            var timeinterval = setInterval(function () {
-                var t = getTimeRemaining(endtime);
-                if (t.total > 0) {
-                    $days.text(t.days);
-                    $hours.text(t.hours);
-                    $minutes.text(t.minutes);
-                    $seconds.text(t.seconds);
-                }
-
-
-                if (t.total <= 0) {
-                    clearInterval(timeinterval);
-                    var zero = '00';
-                    $days.text(zero);
-                    $hours.text(zero);
-                    $minutes.text(zero);
-                    $seconds.text(zero);
-                }
-            }, 1000);
-        }
-
-        initializeTimer(deadline);
-    }
-
-    if ($('.js-countdown').length) { initTimer(); }
 
     //
     // Галерея (Лайтбокс)

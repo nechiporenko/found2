@@ -7,9 +7,23 @@
     height:59px;
     margin-right:10px;
     @include hide-text;
-    background-image:url(../img/logo.png);
+    background-image:url(../img/logo-ukr.png);
     background-repeat:no-repeat;
     background-size:100% 100%;
+}
+
+.h-logo--ru{
+    background-image:url(../img/logo-ru.png);
+}
+
+.h-logo--en{
+    background-image:url(../img/logo-eng.png);
+}
+
+@include media($tablet){//придется выровнять новый логотип в один уровень с меню (((
+    .h-logo{
+        @include transform(translateY(-3px));
+    }
 }
 
 @include media($desktop){

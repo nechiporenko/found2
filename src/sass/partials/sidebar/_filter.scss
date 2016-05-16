@@ -71,6 +71,11 @@
     margin-bottom:5px;
     line-height:1.2;
     padding-left:20px;
+    font-size:rem(18px);
+
+    @include media($desktop){
+        @include font-size(21px);
+    }
 }
 
 .b-filter__select{
