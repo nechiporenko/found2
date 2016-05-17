@@ -306,23 +306,22 @@ jQuery(document).ready(function ($) {
             var setting,
                     settings1 = {
                         maxSlides: 1,
-                        //minSlides: 1,
+                        minSlides: 1,
                         //moveSlides: 1,
                     },
                     settings2 = {
                         maxSlides: 2,
-                        //minSlides: 2,
+                        minSlides: 2,
                         //moveSlides: 2,
                     },
                     settings3 = {
                         maxSlides: 3,
-                        //minSlides: 3,
+                        minSlides: 3,
                         //moveSlides: 3,
                     },
                     common = {
                         slideWidth: 380,
                         slideMargin: 20,
-                        minSlides: 1,
                         moveSlides: 1,
                         auto: false,
                         mode: 'horizontal',
