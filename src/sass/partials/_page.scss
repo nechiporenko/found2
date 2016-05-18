@@ -23,9 +23,9 @@
     background:#f2f2f2;
 }
 
-.page__section--article{//если нужны выделения желтоым в тексте
-    b, strong{
-        @extend .g-bright-text;
+.page__section--article{//контент текстовых страниц
+    p, ul, ol{
+        margin-bottom:20px;
     }
 }
 

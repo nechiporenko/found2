@@ -392,7 +392,7 @@ h1, h2, h3, h4, h5, h6, .g-title, .b-empty__title, .g-subtitle {
 .g-brand-color {
   color: #5658ae; }
 
-.g-bright-text, .page__section--article b, .page__section--article strong {
+.g-bright-text {
   font-weight: 700;
   background: #fff100; }
 
@@ -1424,6 +1424,9 @@ input[type="checkbox"], input[type="radio"] {
 
 .page__section--alt {
   background: #f2f2f2; }
+
+.page__section--article p, .page__section--article ul, .page__section--article ol {
+  margin-bottom: 20px; }
 
 @media screen and (min-width: 992px)  {
   .page__section--object {
